@@ -4,11 +4,11 @@ import defaultImage from '../assets/Default.png';
 // Мы определяем интерфейс GeographicalObject, который описывает структуру данных географического объекта
 export interface Fine {
     fine_id: number;
-    picture_url: string | null;
+    picture_url: string;
     title: string;
     price: string;
     fine_status: string;
-    image: string | null;
+    image: string;
 }
 
 
@@ -30,7 +30,7 @@ export const GetFilteredFines = async (titleWord: string): Promise<FinesResult> 
         if(titleWord == null){
             url = `http://127.0.0.1:8000/fines/`;
         } else{
-            url = `http://127.0.0.1:8000/fines/?${params}=${titleWord}`;
+            url = `http://127.0.0.1:8000/fines/`;
         }
         // Отправляем GET-запрос на сервер
         const response = await fetch(url);

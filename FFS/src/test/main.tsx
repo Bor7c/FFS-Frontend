@@ -2,13 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, Link } from 'react-router-dom'
 import './index.css'
+import ITunesPage from './ITunesPage.tsx'
 import 'bootstrap/dist/css/bootstrap.min.css'
-
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <h1>Это наша стартовая страница</h1>
+    element: <ITunesPage/>
   },
   {
     path: '/new',
