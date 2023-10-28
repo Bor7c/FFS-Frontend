@@ -9,7 +9,6 @@ export interface Fine {
 
 // Мы также создаём интерфейс FineResult для описания структуры результата запроса
 export interface FineResult {
-    count: number; // Количество объектов в результате
     data: Fine[]; // Массив объектов
 }
 
@@ -25,15 +24,13 @@ export const GetFine = async (fine_id: number): Promise<FineResult> => {
         const data: Fine = await response.json();
         // Мы возвращаем объект GeographicalObjectResult, указывая, что в результате только один объект
         return {
-            count: 1, // Только один объект, если запрос успешен
-            data: [data],
+           data: [data],
         };
     } catch (error) {
         // Мы ловим ошибку, если запрос завершился неудачей, и выводим её в консоль
         console.error('Ошибка запроса штрафа:', error);
         // В случае ошибки возвращаем пустой результат с count = 0
         return {
-            count: 0,
             data: [],
         };
     }

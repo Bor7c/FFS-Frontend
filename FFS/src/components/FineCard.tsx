@@ -11,7 +11,7 @@ interface Fine {
     image: string;
 }
 
-const FinesCard: React.FC<{ fineData: Fine; fine_id: number}> = ({fineData}) => {
+const FinesCard: React.FC<{fine_id: number; fineData: Fine;}> = ({fineData}) => {
     return (
         <div className="container-item" key={fineData.fine_id} style={{width: '10%', height: 'auto'}}>
             <div className="wrapper">

@@ -23,16 +23,16 @@ function Fines() {
 
     // Мы определяем функцию fetchData, которая асинхронно загружает данные географических объектов
     // с использованием GET_GeographicalObjectsPaginations и обновляет состояние geographical_object.
-    const fetchData = async (title: string) => {
-        const data = await GetFilteredFines(title);
-        setFine(data);
-    };
+    // const fetchData = async (title: string) => {
+    //     const data = await GetFilteredFines(title);
+    //     setFine(data);
+    // };
 
     // Мы используем useEffect, чтобы выполнить загрузку данных при монтировании компонента
     // и при изменении текущей страницы.
-    useEffect(() => {
-        fetchData(title);
-    });
+    // useEffect(() => {
+    //     fetchData(title);
+    // });
 
 
     const [title, titleData] = useState('');

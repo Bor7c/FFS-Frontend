@@ -30,7 +30,7 @@ export const GetFilteredFines = async (titleWord: string): Promise<FinesResult> 
         if(titleWord == null){
             url = `http://127.0.0.1:8000/fines/`;
         } else{
-            url = `http://127.0.0.1:8000/fines/`;
+            url = `http://127.0.0.1:8000/fines/?${params}=${titleWord}`;
         }
         // Отправляем GET-запрос на сервер
         const response = await fetch(url);
@@ -47,13 +47,13 @@ export const GetFilteredFines = async (titleWord: string): Promise<FinesResult> 
         // Парсим ответ в формат JSON и сохраняем в переменной 'data'
 
         // Если url_photo пустой, и заменить его на изображение по умолчанию
-        if (Array.isArray(Fines)) {
-            Fines.forEach(item => {
-                if (!item.image) {
-                    item.image = defaultImage;
-                }
-            });
-        }
+        // if (Array.isArray(Fines)) {
+        //     Fines.forEach(item => {
+        //         if (!item.image) {
+        //             item.image = defaultImage;
+        //         }
+        //     });
+        // }
         // const count = parseInt(response.headers.get('X-Total-Count') || '0', 10);
         return {
             breach_id: List.breach_id,   
