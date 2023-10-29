@@ -4,6 +4,7 @@ import {
     GetFilteredFines
 } from '../modules/GetFines.js'
 import FineCard from './FineCard.tsx';
+import SearchFines from './Search.tsx';
 // import "../styles/main_menu.css"
 // import "../styles/search_button.css"
 // import FiltrationGeographicalObject from "./Filtration.tsx";
@@ -16,21 +17,28 @@ function Fines() {
         fines:[],
     });
 
-    const fetchData = async () => {
-        const data = await GetFilteredFines();
+    const fetchData = async (tltleData: any) => {
+        const data = await GetFilteredFines(tltleData);
         setFine(data);
     };
 
     useEffect(() => {
-        fetchData();
+        fetchData(tltleData);
     },[]);
+
+    const setFineData = (data: any) => {
+        console.log('After filtration: ', data)
+        setFine(data);
+    }
+
+    const [tltleData, setTltleData] = useState('');
 
     return (
         <>
-            <form className="form-s" action="{% url 'order_url' %}" method="get">
-                <input className="input_text" name="text" type="search"/>
-                <button className="fa fa-search" name="search">Поиск</button>
-            </form>
+            <SearchFines
+                setFineData={setFineData}
+                setTitleData={setTltleData}
+            />
             <div className="container">
                 {Fine.fines.map((object) => (
                     <FineCard fineData={object}/>

@@ -18,20 +18,20 @@ export interface FinesResult {
     fines: Fine[];
 }
 
-export const GetFilteredFines = async (): Promise<FinesResult> => {
+export const GetFilteredFines = async (titleData: string): Promise<FinesResult> => {
     try {
         // Определяем параметры запроса, включая номер страницы и количество объектов на странице
-        // const params = new URLSearchParams({
-        //     title: 'title',
-        // });
+        const params = new URLSearchParams({
+            title: titleData,
+        });
 
         // Формируем URL запроса с параметрами
-        let url = 'http://127.0.0.1:8000/fines/';
-        // if(titleWord == null){
-        //     url = `http://127.0.0.1:8000/fines/`;
-        // } else{
-        //     url = `http://127.0.0.1:8000/fines/?${params}=${titleWord}`;
-        // }
+        let url = '';
+        if(titleData == null){
+            url = `http://127.0.0.1:8000/fines/`;
+        } else{
+            url = `http://127.0.0.1:8000/fines/?${params}`;
+        }
         // Отправляем GET-запрос на сервер
         const response = await fetch(url);
 
@@ -47,13 +47,13 @@ export const GetFilteredFines = async (): Promise<FinesResult> => {
         // Парсим ответ в формат JSON и сохраняем в переменной 'data'
 
         // Если url_photo пустой, и заменить его на изображение по умолчанию
-        // if (Array.isArray(Fines)) {
-        //     Fines.forEach(item => {
-        //         if (!item.image) {
-        //             item.image = defaultImage;
-        //         }
-        //     });
-        // }
+        if (Array.isArray(Fines)) {
+            Fines.forEach(item => {
+                if (!item.image) {
+                    item.image = defaultImage;
+                }
+            });
+        }
         // const count = parseInt(response.headers.get('X-Total-Count') || '0', 10);
         return {
             breach_id: List.breach_id,   
