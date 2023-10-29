@@ -19,7 +19,7 @@ const FineCard: React.FC<{fineData: Fine}> = ({fineData}) => {
     <Card style={{ width: '18rem' }}>
       <Card.Img style={{ width: '100%', height: 'auto' }} variant="top" src={fineData.image} />
       <Card.Body>
-        <Card.Title>{fineData.price}</Card.Title>
+        <Card.Title>{fineData.price}₽</Card.Title>
         <Card.Text>
           {fineData.title}
         </Card.Text>

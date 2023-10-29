@@ -10,32 +10,20 @@ import FineCard from './FineCard.tsx';
 
 
 function Fines() {
-    // Мы создаём состояние geographical_object и функцию для его обновления с начальным значением
-    // {count: 0, data: []}, представляющим пустой список географических объектов.
+    
     const [Fine, setFine] = useState<FinesResult>({
         breach_id: null,
         fines:[],
     });
 
-    // // Для пагинации
-    // const [currentPage, setCurrentPage] = useState(1);
-    // const itemsPerPage = 5;
-
-    // Мы определяем функцию fetchData, которая асинхронно загружает данные географических объектов
-    // с использованием GET_GeographicalObjectsPaginations и обновляет состояние geographical_object.
     const fetchData = async () => {
         const data = await GetFilteredFines();
         setFine(data);
     };
 
-    // Мы используем useEffect, чтобы выполнить загрузку данных при монтировании компонента
-    // и при изменении текущей страницы.
     useEffect(() => {
         fetchData();
     },[]);
-
-
-    // const [title, titleData] = useState('');
 
     return (
         <>
