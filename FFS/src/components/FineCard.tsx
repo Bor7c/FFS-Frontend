@@ -1,4 +1,6 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 // import "../styles/card_item.css"
 
@@ -11,21 +13,21 @@ interface Fine {
     image: string;
 }
 
-const FinesCard: React.FC<{fine_id: number; fineData: Fine;}> = ({fineData}) => {
-    return (
-        <div className="container-item" key={fineData.fine_id} style={{width: '10%', height: 'auto'}}>
-            <div className="wrapper">
-                <img src={fineData.price} style={{width: 'auto', height: '50%'}}/>
-            </div>
-            <div className="button-wrapper">
-                <input type="text" name="id" value={fineData.fine_id} style={{display: 'none'}}/>
-                <Link to={`/geographical_object/${fineData.fine_id}`}>
-                    <button className="btn fill">Посмотреть</button>
-                </Link>
-            </div>
-        </div>
-        
-    );
-};
 
-export default FinesCard;
+const FineCard: React.FC<{fineData: Fine}> = ({fineData}) => {
+  return (
+    <Card style={{ width: '18rem' }}>
+      <Card.Img style={{ width: '100%', height: 'auto' }} variant="top" src={fineData.image} />
+      <Card.Body>
+        <Card.Title>{fineData.price}</Card.Title>
+        <Card.Text>
+          {fineData.title}
+        </Card.Text>
+        <Button variant="primary">Подробнее</Button>
+      </Card.Body>
+    </Card>
+
+  )
+}
+
+export default FineCard

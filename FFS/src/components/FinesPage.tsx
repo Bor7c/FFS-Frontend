@@ -3,7 +3,7 @@ import {
     FinesResult,
     GetFilteredFines
 } from '../modules/GetFines.js'
-import FinesCard from './FineCard.tsx';
+import FineCard from './FineCard.tsx';
 // import "../styles/main_menu.css"
 // import "../styles/search_button.css"
 // import FiltrationGeographicalObject from "./Filtration.tsx";
@@ -14,7 +14,7 @@ function Fines() {
     // {count: 0, data: []}, представляющим пустой список географических объектов.
     const [Fine, setFine] = useState<FinesResult>({
         breach_id: null,
-        fines: []
+        fines:[],
     });
 
     // // Для пагинации
@@ -23,19 +23,19 @@ function Fines() {
 
     // Мы определяем функцию fetchData, которая асинхронно загружает данные географических объектов
     // с использованием GET_GeographicalObjectsPaginations и обновляет состояние geographical_object.
-    // const fetchData = async (title: string) => {
-    //     const data = await GetFilteredFines(title);
-    //     setFine(data);
-    // };
+    const fetchData = async () => {
+        const data = await GetFilteredFines();
+        setFine(data);
+    };
 
     // Мы используем useEffect, чтобы выполнить загрузку данных при монтировании компонента
     // и при изменении текущей страницы.
-    // useEffect(() => {
-    //     fetchData(title);
-    // });
+    useEffect(() => {
+        fetchData();
+    },[]);
 
 
-    const [title, titleData] = useState('');
+    // const [title, titleData] = useState('');
 
     return (
         <>
@@ -45,7 +45,7 @@ function Fines() {
             </form>
             <div className="container">
                 {Fine.fines.map((object) => (
-                    <FinesCard fine_id={object.fine_id} fineData={object}/>
+                    <FineCard fineData={object}/>
                 ))}
             </div>
         </>

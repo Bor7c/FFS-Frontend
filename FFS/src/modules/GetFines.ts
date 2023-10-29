@@ -11,27 +11,26 @@ export interface Fine {
     image: string;
 }
 
-
 // Мы также создаём интерфейс GeographicalObjectResult для описания структуры результата запроса
 export interface FinesResult {
     breach_id: number | null;
     fines: Fine[];
 }
 
-export const GetFilteredFines = async (titleWord: string): Promise<FinesResult> => {
+export const GetFilteredFines = async (): Promise<FinesResult> => {
     try {
         // Определяем параметры запроса, включая номер страницы и количество объектов на странице
-        const params = new URLSearchParams({
-            title: 'title',
-        });
+        // const params = new URLSearchParams({
+        //     title: 'title',
+        // });
 
         // Формируем URL запроса с параметрами
-        let url = '';
-        if(titleWord == null){
-            url = `http://127.0.0.1:8000/fines/`;
-        } else{
-            url = `http://127.0.0.1:8000/fines/?${params}=${titleWord}`;
-        }
+        let url = 'http://127.0.0.1:8000/fines/';
+        // if(titleWord == null){
+        //     url = `http://127.0.0.1:8000/fines/`;
+        // } else{
+        //     url = `http://127.0.0.1:8000/fines/?${params}=${titleWord}`;
+        // }
         // Отправляем GET-запрос на сервер
         const response = await fetch(url);
 
