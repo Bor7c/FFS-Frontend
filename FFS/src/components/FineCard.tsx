@@ -23,7 +23,9 @@ const FineCard: React.FC<{fineData: Fine}> = ({fineData}) => {
         <Card.Text>
           {fineData.title}
         </Card.Text>
-        <Button variant="primary">Подробнее</Button>
+        <Link to={`/fines/${fineData.fine_id}`}>
+          <Button variant="primary" >Подробнее</Button>
+        </Link>
       </Card.Body>
     </Card>
 
