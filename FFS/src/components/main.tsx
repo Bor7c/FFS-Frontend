@@ -14,9 +14,9 @@ root.render(
         {/*<div className="main">*/}
             <Routes>
                 {/*Список географических объектов*/}
-                <Route path="/fines/" element={<Fines/>}/>
+                <Route path="fines/" element={<Fines/>}/>
                 {/*Информация о географическом объекте*/}
-                <Route path="/fines/:id" element={<Fine/>} />
+                <Route path="fines/:id" element={<Fine/>} />
             </Routes>
         {/*</div>*/}
     </BrowserRouter>
