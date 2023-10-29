@@ -47,7 +47,6 @@ return (
             onChange={handleFilterChange}
             placeholder="Заголовок..."
         />
-        <button className="fa fa-search" name="search">Поиск</button>
     </form>
 </>
 );
