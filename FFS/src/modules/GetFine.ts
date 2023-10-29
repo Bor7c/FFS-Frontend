@@ -18,7 +18,7 @@ export interface FineResult {
 export const GetFine = async (fine_id: number): Promise<FineResult> => {
     try {
         // Мы отправляем GET-запрос на сервер, указывая id объекта в URL
-        const response = await fetch(`http://127.0.0.1:8000/fines/${fine_id}`);
+        const response = await fetch(`http://127.0.0.1:8000/fines/${fine_id}/`);
         // Если сервер возвращает успешный ответ (status 200), то мы разбираем JSON-данные и возвращаем результат
         if (!response.ok) {
             throw new Error('Запрос незадался!');
