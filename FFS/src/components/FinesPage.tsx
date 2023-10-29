@@ -33,6 +33,7 @@ function Fines() {
 
     const [tltleData, setTltleData] = useState('');
 
+
     return (
         <>
             <SearchFines

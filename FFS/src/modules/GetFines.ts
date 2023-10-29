@@ -1,4 +1,5 @@
 import defaultImage from '../assets/Default.png';
+import { getMockFines } from '../assets/MockFines';
 
 
 // Мы определяем интерфейс GeographicalObject, который описывает структуру данных географического объекта
@@ -19,6 +20,8 @@ export interface FinesResult {
 }
 
 export const GetFilteredFines = async (titleData: string): Promise<FinesResult> => {
+    const mockFines = getMockFines();
+
     try {
         // Определяем параметры запроса, включая номер страницы и количество объектов на странице
         const params = new URLSearchParams({
@@ -35,12 +38,13 @@ export const GetFilteredFines = async (titleData: string): Promise<FinesResult> 
         // Отправляем GET-запрос на сервер
         const response = await fetch(url);
 
-        // if (!response.ok) {
-        //     return {
-        //         // @ts-ignore
-        //         data: mockGeographicalObjects.data
-        //     }
-        // }
+        if (!response.ok) {
+            return {
+                breach_id: null,
+                // @ts-ignore
+                fines: mockFines.fines
+            }
+        }
 
         const List: FinesResult = await response.json();
         const Fines = List.fines;
@@ -62,8 +66,9 @@ export const GetFilteredFines = async (titleData: string): Promise<FinesResult> 
     } catch (error) {
         // console.error('Error fetching geographical objects:', error);
         return {
-            breach_id: null,  
-            fines: [],
+            breach_id: null,
+            // @ts-ignore
+            fines: mockFines.fines
         }
     }
 };

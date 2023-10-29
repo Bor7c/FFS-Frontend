@@ -1,0 +1,39 @@
+.container-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+  }
+  
+  .container-1 img {
+    width: 30%;
+    height: auto;
+  }
+  
+  .container-1 .short_text {
+    font-size: 24px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .container-1 .line {
+    width: 100%;
+    height: 1px;
+    background-color: #000;
+    border: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .container-1 .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .container-1 .info {
+    font-size: 16px;
+  }

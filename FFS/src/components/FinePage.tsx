@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-// import "../styles/card_item.css"
+import "../styles/stylesForFinePage.css"
 import { GetFine } from "../modules/GetFine.ts";
 
 interface Fineint {
@@ -39,7 +39,7 @@ const Fine = () => {
 
     return (
         <div className="container-1">
-            <span className="circle-image">
+            <span>
                 <img style={{ width: '30%', height: 'auto' }} src={Fineobj.image} alt="" />
             </span>
 
