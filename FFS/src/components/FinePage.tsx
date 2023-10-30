@@ -28,7 +28,7 @@ const Fine = () => {
                     }
                 })
                 .catch((error) => {
-                    console.error('Error fetching geographical object:', error);
+                    console.error('Error:', error);
                 });
         }
     }, [FineId]);
