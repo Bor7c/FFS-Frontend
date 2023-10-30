@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(
 root.render(
     <BrowserRouter>
             <Routes>
-                <Route path="fines/" element={<Fines/>}/>
+                <Route path="FFS-Frontend/" element={<Fines/>}/>
                 <Route path="fines/:id" element={<Fine/>} />
             </Routes>
     </BrowserRouter>
