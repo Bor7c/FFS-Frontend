@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-    <BrowserRouter>
+        <BrowserRouter>
             <Routes>
                 <Route path="fines/" element={<Fines/>}/>
                 <Route path="fines/:id" element={<Fine/>} />

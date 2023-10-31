@@ -349,26 +349,7 @@ input{
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-.fa{
-  box-sizing: border-box;
-  padding: 10px;
-  width: 42.5px;
-  height: 42.5px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  border-radius: 50%;
-  color: #970000;
-  text-align: center;
-  font-size: 2em;
-  transition: all 1s;
-}
 
-.fa-search{
-  background: #b3b3b3;
-  border-color: #b3b3b3;
-  border-radius: 50%;
-}
 
 .form-s:hover,
 .form-s:valid{
@@ -417,6 +398,7 @@ input{
   width: 300px;
   height: 300px;
 }
+
 .circle-image img{
   width:100%;
   height:100%;
@@ -442,115 +424,3 @@ input{
 
 
 
-
-
-.cl-btn{
-  margin-top: none;
-  margin-left: none;
-  top: none;
-  left: none;
-  transform: none;
-  transition: none;
-  width: none;
-  height: none;
-  background: none;
-  box-sizing: none;
-  border-radius: none;
-  border: none;
-  padding: none;
-}
-
-
-
-
-.cl-btn-1 {
-  margin: 20px;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  height: 450px;
-  background-color: #ffffff00;
-  border-width: 0px;
-}    
-.cl-btn-1 div {
-  width: 78px;
-  height: 81px;
-  position: absolute;
-  background: #dadada9a;
-  border-radius: 30%;
-  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
-  border: 6px solid #970000;
-  cursor: pointer;
-}
-.cl-btn-1 div > span {
-  background-color: #2a2b2f;
-  display: block;
-  height: 7px;
-  border-radius: 6px;
-  position: relative;
-  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
-  position: absolute;
-  top: 65%;
-  margin-top: -6px;
-  left: 21px;
-  width: 35px;
-}
-.cl-btn-1 div > span span {
-  display: block;
-  background-color: #970000;
-  width: 7px;
-  height: 7px;
-  border-radius: 7px;
-  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
-  position: absolute;
-  left: -12px;
-  top: 0px;
-}
-.cl-btn-1 div > span.left {
-  transform: rotate(45deg);
-  transform-origin: center;
-}
-.cl-btn-1 div > span.left .circle-left {
-  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
-  margin-left: 12px;
-}
-.cl-btn-1 div > span.left .circle-right {
-  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
-  margin-left: 40px;
-}
-.cl-btn-1 div > span.right {
-  transform: rotate(-45deg);
-  transform-origin: center;
-}
-.cl-btn-1 div > span.right .circle-left {
-  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
-  margin-left: 12px;
-}
-.cl-btn-1 div > span.right .circle-right {
-  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
-  margin-left: 40px;
-}
-.cl-btn-1 div:hover > span {
-  background-color: #970000;
-  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
-}
-.cl-btn-1 div:hover > span span {
-  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
-  background-color: #970000;
-}
-.cl-btn-1 div:hover > span.left .circle-left {
-  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
-  margin-left: 40px;
-}
-.cl-btn-1 div:hover > span.left .circle-right {
-  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
-  margin-left: 12px;
-}
-.cl-btn-1 div:hover > span.right .circle-left {
-  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
-  margin-left: 40px;
-}
-.cl-btn-1 div:hover > span.right .circle-right {
-  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
-  margin-left: 12px;
-}
