@@ -41,7 +41,7 @@ fetchTitledData();
 
 return (
 <>
-    <form className="form-s" action="{% url 'order_url' %}" method="get" onSubmit={handleFilterSubmit}>
+    <form className="form-s" method="get" onSubmit={handleFilterSubmit}>
         <input className="input_text" name="text" type="search"
             value={titleData}
             onChange={handleFilterChange}

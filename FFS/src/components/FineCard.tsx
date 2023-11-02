@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+import Podrobnee_button from './Podrobnee_button';
 import "../styles/styles.css"
 
 interface Fine {
@@ -15,20 +15,6 @@ interface Fine {
 
 const FineCard: React.FC<{fineData: Fine}> = ({fineData}) => {
   return (
-    // <Card style={{ width: '18rem' }} className="card">
-    //   <Card.Img className="background-image" style={{ width: '100%', height: 'auto' }} variant="top" src={fineData.image} />
-    //   <Card.Body>
-    //     <Card.Title>{fineData.price}₽</Card.Title>
-    //     <Card.Text>
-    //       {fineData.title}
-    //     </Card.Text>
-    //     <Link to={`/fines/${fineData.fine_id}`}>
-    //       <Button variant="primary" >Подробнее</Button>
-    //     </Link>
-    //   </Card.Body>
-    // </Card>
-
-
 <div className="card">
     <div className="background-img-white">
       <div className="background-img" style={{backgroundImage: `url(${fineData.image})`}}>
@@ -38,7 +24,7 @@ const FineCard: React.FC<{fineData: Fine}> = ({fineData}) => {
               <h2>{fineData.price}₽</h2>
               <h3>{fineData.title}</h3>
               <Link to={`/fines/${fineData.fine_id}`}>
-                <Button variant="primary" className="full-red-button">Подробнее</Button>
+                <Podrobnee_button/>
               </Link>
             </div>
           </div>

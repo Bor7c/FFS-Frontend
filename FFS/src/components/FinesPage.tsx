@@ -1,6 +1,4 @@
 import {useState, useEffect} from 'react'
-import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
 
 import {
     FinesResult,
@@ -8,10 +6,8 @@ import {
 } from '../modules/GetFines.js'
 import FineCard from './FineCard.tsx';
 import SearchFines from './Search.tsx';
-import '../styles/new.scss'
-// import "../styles/main_menu.css"
-// import "../styles/search_button.css"
-// import FiltrationGeographicalObject from "./Filtration.tsx";
+import '../styles/navbar.scss'
+
 
 
 function Fines() {
@@ -40,29 +36,20 @@ function Fines() {
 
     return (
         <>
-            <div className="header">  
-            <div className="header__logo">
-                <strong>FFS</strong>
-                <SearchFines
-                    setFineData={setFineData}
-                    setTitleData={setTltleData}
-                />
-            </div>
-            <nav className="navbar">
-                <ul className="navbar__menu">
-                <li className="navbar__item">
-                    <a href="#" className="navbar__link"><i data-feather="home"></i><span>ШТрафы</span> </a>
-                </li>
-                <li className="navbar__item">
-                    <a href="#" className="navbar__link"><i data-feather="message-square"></i><span>Нарушение</span></a>        
-                </li>
-                <li className="navbar__item">
-                    <a href="#" className="navbar__link"><i data-feather="users"></i><span>Поиск</span></a>        
-                </li>
-                </ul>
-            </nav>
-            </div>
 
+
+        <nav className="mask">
+            <a href="#">FFS</a>
+            <div className='search_in_menu'><SearchFines setFineData={setFineData} setTitleData={setTltleData}/></div>
+            <ul className="list">
+                <li><a href="#">Штрафы</a></li>
+                <li><a href="#">Нарушения</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            
+            <button className="menu">Menu</button>
+        </nav>
 
 
             <div className="container">
