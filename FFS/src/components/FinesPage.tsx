@@ -44,8 +44,6 @@ function Fines() {
             <ul className="list">
                 <li><a href="#">Штрафы</a></li>
                 <li><a href="#">Нарушения</a></li>
-                <li><a href="#">News</a></li>
-                <li><a href="#">Contact</a></li>
             </ul>
             
             <button className="menu">Menu</button>
