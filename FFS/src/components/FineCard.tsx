@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Podrobnee_button from './Podrobnee_button';
+import Podrobnee_button from './Podrobnee_button.tsx';
 import "../styles/styles.css"
+import "../styles/FineCard.css"
 
 interface Fine {
     fine_id: number;
@@ -24,7 +25,7 @@ const FineCard: React.FC<{fineData: Fine}> = ({fineData}) => {
               <h2>{fineData.price}₽</h2>
               <h3>{fineData.title}</h3>
               <Link to={`/fines/${fineData.fine_id}`}>
-                <Podrobnee_button/>
+                <Podrobnee_button Btext="Подробнее"/>
               </Link>
             </div>
           </div>

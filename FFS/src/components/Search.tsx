@@ -1,7 +1,6 @@
 import {useEffect, useState} from 'react'
 import {GetFilteredFines, FinesResult} from '../modules/GetFines.ts'
-// import "../styles/search_button.css"
-// import {setGeographicalObjectData} from "../components/Main.tsx"
+import "../styles/Search.scss"
 
 
 function SearchFines({
@@ -41,12 +40,12 @@ fetchTitledData();
 
 return (
 <>
-    <form className="form-s" method="get" onSubmit={handleFilterSubmit}>
-        <input className="input_text" name="text" type="search"
-            value={titleData}
-            onChange={handleFilterChange}
-            placeholder="Заголовок..."
-        />
+    <form className="InputContainer">
+            <input className="search__field" name="text" type="search"
+                value={titleData}
+                onChange={handleFilterChange}
+                placeholder="Заголовок..."
+            />
     </form>
 </>
 );

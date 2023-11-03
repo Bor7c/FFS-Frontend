@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-
+import { Link } from 'react-router-dom';
 import {
     FinesResult,
     GetFilteredFines
@@ -36,25 +36,25 @@ function Fines() {
 
     return (
         <>
-
-
         <nav className="mask">
             <a href="#">FFS</a>
             <div className='search_in_menu'><SearchFines setFineData={setFineData} setTitleData={setTltleData}/></div>
             <ul className="list">
+            <Link to={`/fines`}>
                 <li><a href="#">Штрафы</a></li>
+            </Link>
+            <Link to={`/breaches`}>
                 <li><a href="#">Нарушения</a></li>
+            </Link>
             </ul>
-            
-            <button className="menu">Menu</button>
         </nav>
 
+        <div className="container">
+            {Fine.fines.map((object) => (
+                <FineCard fineData={object}/>
+            ))}
+        </div>
 
-            <div className="container">
-                {Fine.fines.map((object) => (
-                    <FineCard fineData={object}/>
-                ))}
-            </div>
         </>
     );
 };

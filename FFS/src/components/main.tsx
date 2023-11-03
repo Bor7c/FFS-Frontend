@@ -13,7 +13,7 @@ root.render(
         <BrowserRouter>
             <Routes>
                 <Route path="fines/" element={<Fines/>}/>
-                <Route path="fines/:id" element={<Fine/>} />
+                <Route path="fines/:id" element={<Fine/>}/>
             </Routes>
     </BrowserRouter>
 );
