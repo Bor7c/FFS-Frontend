@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Podrobnee_button from './Podrobnee_button.js';
-import "../styles/styles.css"
-import "../styles/FineCard.css"
+import Podrobnee_button from '../../components/Podrobnee_button.js';
+
+import "../../styles/FinePage.css"
 
 export interface Breach {
   breach_id: number;

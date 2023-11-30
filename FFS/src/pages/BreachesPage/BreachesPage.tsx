@@ -1,14 +1,11 @@
 import {useState, useEffect} from 'react'
-import { Link } from 'react-router-dom';
-import { Breach } from './Interfaces.ts';
+
+import { Breach } from '../../components/Interfaces.ts';
 import BreachCard from './BreachCard.tsx';
-import '../styles/navbar.scss'
-import { useSsid } from '../hooks/useSsid.ts';
 
 
 
 const Breaches = () => {
-    const {session_id} = useSsid()
     const [Breaches, setBreaches] = useState<Breach[]>([]);
 
     const searchBreaches = async () => {

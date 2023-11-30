@@ -2,7 +2,7 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Fines from "./FinesPage.tsx";
 import Fine from "./FinePage.tsx";
-import Breaches from "./BreachesPage.tsx";
+import Breaches from "../pages/BreachesPage/BreachesPage.tsx";
 import ReactDOM from "react-dom/client";
 import LoginPage from "../pages/LoginPage/LoginPage.tsx";
 import { Provider } from "react-redux";

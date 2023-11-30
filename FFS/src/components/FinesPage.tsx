@@ -1,13 +1,10 @@
 import {useState, useEffect} from 'react'
-import { Link } from 'react-router-dom';
-import axios from "axios";
 import { ListFines } from './Interfaces.ts';
 import { mockFines } from '../assets/Mock.ts';
 import FineCard from './FineCard.tsx';
 import SearchFines from './Search.tsx';
 import '../styles/navbar.scss'
-import { useSsid } from '../hooks/useSsid.ts';
-import { useAuth } from '../hooks/useAuth.ts';
+
 
 
 
@@ -25,8 +22,6 @@ const Fines = () => {
     const searchFines = async () => {
 
         try {
-
-            // Определяем параметры запроса, включая номер страницы и количество объектов на странице
             const params = new URLSearchParams({
                 title: titleData,
             });
