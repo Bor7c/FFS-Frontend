@@ -5,7 +5,8 @@ const ProfilePage = () => {
 
     const navigate = useNavigate()
 
-    const {logOut} = useAuth()
+    const {logOut, user_name} = useAuth()
+
 
     const handleLogOut = async () => {
         await logOut()
@@ -21,7 +22,7 @@ const ProfilePage = () => {
         <div>
             <h3>Профиль</h3>
 
-            <span>asdfsaf</span>
+            <span>{user_name}</span>
             <button onClick={handleLogOut}>Выйти</button>
         </div>
     )
