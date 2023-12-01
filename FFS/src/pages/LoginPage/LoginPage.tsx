@@ -1,6 +1,8 @@
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../hooks/useAuth"
+import "./LoginPage.css"
+import Podrobnee_button from "../../components/Podrobnee_button"
 
 const LoginPage = () => {
 
@@ -36,18 +38,48 @@ const LoginPage = () => {
     
 
     return (
-        <div>
-            <h3>Авторизация</h3>
+        // <div>
+        //     <h3>Авторизация</h3>
 
-            <form onSubmit={handleSubmit}>
+        //     <form onSubmit={handleSubmit}>
 
+        //         <input type="text" name="userlogin"/>
+        //         <input type="password" name="password"/>
+        //         <button type="submit">Войти</button>
+
+        //     </form>
+
+        // </div>
+          <section> 
+
+          <div className="signin"> 
+       
+           <div className="content"> 
+       
+            <h2>Вход</h2> 
+       
+            <form className="form" onSubmit={handleSubmit}> 
+       
+                <div className="inputBox"> 
+        
                 <input type="text" name="userlogin"/>
+        
+                </div> 
+        
+                <div className="inputBox"> 
+        
                 <input type="password" name="password"/>
-                <button type="submit">Войти</button>
-
-            </form>
-
-        </div>
+        
+                </div>
+    
+                <button className="EntButton" type="submit">Вход</button> 
+            </form> 
+       
+           </div> 
+       
+          </div> 
+       
+         </section> 
     )
 }
 
