@@ -1,11 +1,9 @@
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../hooks/useAuth"
-import { useSsid } from "../../hooks/useSsid"
 
 const LoginPage = () => {
 
-    const { session_id } = useSsid()
 
     const {login, auth} = useAuth()
     
