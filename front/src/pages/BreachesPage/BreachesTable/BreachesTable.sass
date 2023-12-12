@@ -1,0 +1,37 @@
+.table-wrapper
+	display: flex
+	flex-direction: column
+	justify-content: space-between
+	width: 100%
+	background: #CD5C5C
+	border-radius: 10px
+	overflow: hidden
+    
+
+	.orders-table
+		width: 100%
+		border-collapse: collapse
+
+		thead
+			tr
+				background: #B22222
+				th
+					padding: 20px
+					user-select: none
+					gap: 10px
+					color: #fff
+					font-size: 20px
+
+
+
+		tbody
+			tr
+				transition: 0.2s ease
+
+				&:hover
+					background-color: lightskyblue
+
+				td
+					padding: 10px
+					text-align: center
+					font-size: 20px
