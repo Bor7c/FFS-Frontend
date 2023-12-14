@@ -21,7 +21,7 @@ export default function FinesScreen({navigation}){
      useEffect(()=>{
           async function getAllOperaitons(){
                console.log("in use effect, searching for")
-               axios.get("http://192.168.51.1:8000/fines/search")
+               axiosInstance.get("fines/search")
                .then((response)=>{
                     console.log("got data");
                     dispatch(setFines(response?.data.fines))})

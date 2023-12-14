@@ -11,7 +11,7 @@ export default function FineCard({navigation,...fine}){
       };
 
      return (
-     
+  
           <View style= {styles.card}>
             <ImageBackground style= {styles.image} source={{ uri: fine.image }}>
               <Text style= {styles.price}>{fine.price}₽</Text>
@@ -20,7 +20,8 @@ export default function FineCard({navigation,...fine}){
                   <Text style = {styles.buttonText}>Подробнее</Text> 
                 </Pressable>
             </ImageBackground>
-          </View>
+            </View>
+
 
       
      );
@@ -48,9 +49,6 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
 
-  imageBack: {
-    color: '#00000093',
-  },
 
   container: { 
     display: 'flex', 
@@ -65,19 +63,32 @@ const styles = StyleSheet.create({
   },
 
   title: { 
-    color: '#4287f5', 
-    fontSize: 16 
+    color: '#00000093',
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginTop: 100,
   },
 
   price: { 
     color: '#00000093', 
-    fontSize: 25 
+    fontSize: 25,
+    fontWeight: 'bold',
+    marginTop: -20,
+    marginLeft: 10,
   },
 
   button: {
     backgroundColor: '#970000',
     padding: 10,
     borderRadius: 5,
-    margin: 50,
+    margin: 70,
+    marginTop: 100,
+    
+  },
+
+  buttonText: {
+    color: 'white',
+    textAlign: 'center',
   },
 });
