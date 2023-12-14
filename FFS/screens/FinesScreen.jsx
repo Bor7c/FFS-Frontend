@@ -18,19 +18,20 @@ export default function FinesScreen({navigation}){
      const dispatch = useDispatch();
      const {fines} = useSelector((store)=>store.fine);
 
-     useEffect(() => {
-          async function getAllFines() {
-            try {
-              console.log("in use effect");
-              response = axios.get(`http://127.0.0.1:8000/fines/search`);
-              console.log("got data");
-              dispatch(setFines(response?.fines));
-            } catch (err) {
-              console.log(err);
-            }
+     useEffect(()=>{
+          async function getAllOperaitons(){
+               console.log("in use effect, searching for")
+               axios.get("http://192.168.51.1:8000/fines/search")
+               .then((response)=>{
+                    console.log("got data");
+                    dispatch(setFines(response?.data.fines))})
+               .catch(function(err){
+                    console.log("got error", err)
+               });
           }
-          getAllFines();
-        }, [dispatch]);
+          getAllOperaitons();
+     }, [dispatch]);
+     
 
 
 
