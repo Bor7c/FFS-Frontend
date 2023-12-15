@@ -4,6 +4,7 @@ import FinesScreen from './screens/FinesScreen';
 import FineScreen from './screens/FineScreen';
 import { store } from './store';
 import { Provider } from 'react-redux';
+import { StyleSheet }  from 'react-native';
 
 
 const Stack = createNativeStackNavigator();
@@ -20,3 +21,4 @@ export default function App() {
         </Provider>
     );
 }
+

@@ -10,8 +10,7 @@ export default function FineScreen({ route }) {
     const { fine } = useSelector((store) => store.fine);
     useEffect(() => {
         async function getOneFine() {
-            await axiosInstance.get(`/fines/${id}`).then((response) => dispatch(setFine(response?.data)));
-            
+            await axiosInstance.get(`/fines/${id}`).then((response) => dispatch(setFine(response?.data))); 
         }
         getOneFine();
         return () => {
@@ -33,10 +32,12 @@ export default function FineScreen({ route }) {
 }
 
 const styles = StyleSheet.create({
+
     container: {
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
+      backgroundColor: '#2a2a2a',
     },
     circleImage: {
       width: 150,
@@ -53,15 +54,17 @@ const styles = StyleSheet.create({
     shortText: {
       fontSize: 20,
       fontWeight: 'bold',
+      color: '#e6e6e6',
     },
     line: {
       width: '80%',
       height: 1,
-      backgroundColor: 'black',
+      backgroundColor: '#e6e6e6',
       marginVertical: 10,
     },
     info: {
       textAlign: 'center',
-      marginTop: -300
+      marginTop: -300,
+      color: '#e6e6e6',
     },
   });

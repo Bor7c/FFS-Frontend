@@ -1,4 +1,4 @@
-import {View, Text,StyleSheet, Image, ImageBackground ,Button,  Pressable , Card} from 'react-native';
+import {View, Text,StyleSheet, Image, ImageBackground ,Button,  Pressable , Card, CardCover , CardContent} from 'react-native';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -11,19 +11,19 @@ export default function FineCard({navigation,...fine}){
       };
 
      return (
-  
+      
           <View style= {styles.card}>
+            
             <ImageBackground style= {styles.image} source={{ uri: fine.image }}>
+            <View style= {styles.back}>
               <Text style= {styles.price}>{fine.price}₽</Text>
               <Text style= {styles.title}>{fine.title}</Text>
                 <Pressable style = {styles.button} title='View details' onPress={handlePress}> 
                   <Text style = {styles.buttonText}>Подробнее</Text> 
                 </Pressable>
+              </View>    
             </ImageBackground>
-            </View>
-
-
-      
+          </View>
      );
 }
 
@@ -40,6 +40,19 @@ const styles = StyleSheet.create({
       padding: 24,
       gap: 12,
       margin: 8,
+       
+  },
+
+  back: {
+    backgroundColor: '#00000093',
+    width: 320,
+    height: 420,
+    position: 'relative',
+    top: -24,
+    gap: 12,
+    borderRadius: 12,
+    
+    
   },
 
   image: { 
@@ -47,13 +60,13 @@ const styles = StyleSheet.create({
     width: 320,
     borderRadius: 100,
     resizeMode: 'contain',
-  },
 
+  },
 
   container: { 
     display: 'flex', 
     width: '100%', 
-    margin: 8 
+    margin: 8,
   },
 
   row: {
@@ -63,7 +76,7 @@ const styles = StyleSheet.create({
   },
 
   title: { 
-    color: '#00000093',
+    color: '#e6e6e6',
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -71,18 +84,18 @@ const styles = StyleSheet.create({
   },
 
   price: { 
-    color: '#00000093', 
+    color: '#b3b3b3', 
     fontSize: 25,
     fontWeight: 'bold',
-    marginTop: -20,
+    
     marginLeft: 10,
   },
 
   button: {
     backgroundColor: '#970000',
     padding: 10,
-    borderRadius: 5,
-    margin: 70,
+    borderRadius: 7,
+    margin: 80,
     marginTop: 100,
     
   },
@@ -91,4 +104,6 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
   },
+
+
 });
