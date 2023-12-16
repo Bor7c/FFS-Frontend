@@ -13,7 +13,6 @@ export default function FineCard({navigation,...fine}){
      return (
       
           <View style= {styles.card}>
-            
             <ImageBackground style= {styles.image} source={{ uri: fine.image }}>
             <View style= {styles.back}>
               <Text style= {styles.price}>{fine.price}₽</Text>
@@ -45,10 +44,11 @@ const styles = StyleSheet.create({
 
   back: {
     backgroundColor: '#00000093',
-    width: 320,
-    height: 420,
+    width: 326,
+    height: 426,
     position: 'relative',
-    top: -24,
+    top: -27,
+    left: -3,
     gap: 12,
     borderRadius: 12,
     
@@ -58,7 +58,6 @@ const styles = StyleSheet.create({
   image: { 
     height: 320,
     width: 320,
-    borderRadius: 100,
     resizeMode: 'contain',
 
   },
