@@ -68,11 +68,13 @@ export const BreachesTable = () => {
         data: isSuccess ? data : [],
         initialState: {
             pageIndex: 0,
-            pageSize: 10
+            pageSize: 5
         },
         manualPagination: true,
         pageCount: 1,
     }, usePagination)
+
+    
 
 
     const {
@@ -81,16 +83,31 @@ export const BreachesTable = () => {
         headerGroups,
         page,
         prepareRow,
-    } = tableInstance
+        canPreviousPage,
+        canNextPage,
+        pageOptions,
+        pageCount,
+        gotoPage,
+        nextPage,
+        previousPage,
+        setPageSize,
+        state: { pageIndex, pageSize },
+    } = useTable(
+        {
+            columns: tableColumns,
+            data: isSuccess ? data : [],
+            initialState: { pageIndex: 0, pageSize: 5 },
+        },
+        usePagination
+    )
 
+    // Это вызывается только один раз при монтировании компонента
+    React.useEffect(() => {
+        setPageSize(5)
+    }, [])
 
-    if (error) {
-        return <p>Error</p>;
-    }
-
-    if (isLoading) {
-        return <p>Loading...</p>;
-    }
+    if (error) return <p>Error</p>;
+    if (isLoading) return <p>Loading...</p>;
 
 
     return (
@@ -129,8 +146,39 @@ export const BreachesTable = () => {
                 }
                 </tbody>
             </table>
-
-
+            <div className="pagination">
+                <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+                    {'<<'}
+                </button>{' '}
+                <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+                    {'<'}
+                </button>{' '}
+                <button onClick={() => nextPage()} disabled={!canNextPage}>
+                    {'>'}
+                </button>{' '}
+                <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+                    {'>>'}
+                </button>{' '}
+                <span>
+                    Страница{' '}
+                    <strong>
+                        {pageIndex + 1} из {pageOptions.length}
+                    </strong>{' '}
+                </span>
+                <select
+                    value={pageSize}
+                    onChange={e => {
+                        setPageSize(Number(e.target.value))
+                    }}
+                >
+                    {[5, 10, 20].map(pageSize => (
+                        <option key={pageSize} value={pageSize}>
+                            Показать {pageSize}
+                        </option>
+                    ))}
+                </select>
+            </div>
         </div>
+        
     )
 }
