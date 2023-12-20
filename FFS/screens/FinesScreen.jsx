@@ -6,7 +6,7 @@ import FineCard from "../components/FineCard";
 
 import axios from "axios";
 
-import { StyleSheet, TextInput, View, Keyboard, Pressable , ScrollView, Text} from "react-native";
+import { StyleSheet, TextInput, View, RefreshControl, Pressable , ScrollView, Text} from "react-native";
 import { Feather, Entypo } from "@expo/vector-icons";
 
 
@@ -19,9 +19,10 @@ export default function FinesScreen({navigation}){
      const {title} = useSelector((store)=>store.fine);
      const [input, setInput] = useState("");
      const [clicked, setClicked] = useState(false);
+     const [refreshing, setRefreshing] = useState(false);
 
      useEffect(()=>{
-          async function getAllOperaitons(){
+          async function getAllFines(){
                console.log("in use effect, searching for")
                axiosInstance.get("fines/search/?title="+title)
                .then((response)=>{
@@ -31,16 +32,22 @@ export default function FinesScreen({navigation}){
                     console.log("got error", err)
                });
           }
-          getAllOperaitons();
-     }, [dispatch, title]);
+          getAllFines();
+     }, [dispatch, title, refreshing]);
      
      const SubmitFunc = ()=>{
           console.log ("SUBMITTED!")
+          onRefresh;
           dispatch(setTitle(input))};
+
+     const onRefresh = () => {
+          setRefreshing(true);
+          setRefreshing(false);
+          };
 
 
      return (
-          <ScrollView style={styles.background}>
+          <ScrollView style={styles.background} >
           <View style={styles.container}>
                <View
                style={
@@ -59,7 +66,7 @@ export default function FinesScreen({navigation}){
                {/* Input field */}
                <TextInput
                     style={styles.input}
-                    placeholder="Search"
+                    placeholder="Поиск..."
                     value={input}
                     onChangeText={setInput}
                     onFocus={() => {
@@ -71,6 +78,8 @@ export default function FinesScreen({navigation}){
                     <Entypo name="cross" size={25} color="black" style={{ padding: 1 , marginLeft: -20 }} onPress={() => {
                          setInput("");
                          dispatch(resetTitle())
+                         setRefreshing(true);
+                         setRefreshing(false);
                          setClicked(false);
                          // Keyboard.dismiss();
                          

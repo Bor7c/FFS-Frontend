@@ -14,8 +14,8 @@ export default function App() {
         <Provider store={store}>
             <NavigationContainer>
                 <Stack.Navigator>
-                    <Stack.Screen name='Fines for Scooters' component={FinesScreen} />
-                    <Stack.Screen name='Fine' component={FineScreen} />
+                    <Stack.Screen name='Штрафы для СИМ' component={FinesScreen} />
+                    <Stack.Screen name='Штраф' component={FineScreen} />
                 </Stack.Navigator>
             </NavigationContainer>
         </Provider>

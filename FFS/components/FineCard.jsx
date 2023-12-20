@@ -6,7 +6,7 @@ export default function FineCard({navigation,...fine}){
      console.log("Fine Card")
 
      const handlePress = () => {
-          navigation.navigate('Fine', { id: fine.id });
+          navigation.navigate('Штраф', { id: fine.id });
           console.log ("fine id from handlePress in Operation card", fine.if)
       };
 

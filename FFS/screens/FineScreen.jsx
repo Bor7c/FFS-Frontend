@@ -1,7 +1,7 @@
-import {View, Text, StyleSheet, Image, ImageBackground ,Button,  Pressable , Card}  from 'react-native';
+import {View, Text, StyleSheet, Image, ImageBackground ,Button,  Pressable , Card, ScrollView}  from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect } from 'react';
-import { resetDevice, resetFine, setDevice, setFine } from '../store/fineSlice';
+import { resetFine, setFine } from '../store/fineSlice';
 import { axiosInstance } from '../API';
 
 export default function FineScreen({ route }) {
@@ -18,6 +18,7 @@ export default function FineScreen({ route }) {
         };
     }, [dispatch]);
     return (
+
         <View style={styles.container}>
         <View style={styles.circleImage}>
           <Image source={{ uri: fine.image }} style={styles.image} />
@@ -28,6 +29,7 @@ export default function FineScreen({ route }) {
           <Text style={styles.info}>{fine.text}</Text>
         </View>
       </View>
+
     );
 }
 
@@ -40,9 +42,9 @@ const styles = StyleSheet.create({
       backgroundColor: '#2a2a2a',
     },
     circleImage: {
-      width: 150,
-      height: 150,
-      borderRadius: 75,
+      width: 250,
+      height: 250,
+      borderRadius: 250,
       overflow: 'hidden',
       margin: 10,
     },
@@ -52,8 +54,9 @@ const styles = StyleSheet.create({
       height: undefined,
     },
     shortText: {
-      fontSize: 20,
+      fontSize: 25,
       fontWeight: 'bold',
+      textAlign: 'center',
       color: '#e6e6e6',
     },
     line: {
@@ -64,7 +67,8 @@ const styles = StyleSheet.create({
     },
     info: {
       textAlign: 'center',
-      marginTop: -300,
+      position: 'absolute',
       color: '#e6e6e6',
+      fontSize: 17,
     },
   });
