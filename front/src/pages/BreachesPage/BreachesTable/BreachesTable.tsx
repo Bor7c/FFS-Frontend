@@ -101,10 +101,20 @@ export const BreachesTable = () => {
         usePagination
     )
 
-    // Это вызывается только один раз при монтировании компонента
+    // Сохраняем текущую страницу в localStorage
     React.useEffect(() => {
-        setPageSize(5)
-    }, [])
+        localStorage.setItem('currentPage', pageIndex);
+    }, [pageIndex]);
+  
+  // Обработчик для установки текущей страницы на основе сохраненного значения
+    React.useEffect(() => {
+        const savedPage = localStorage.getItem('currentPage');
+        const savedPageSize = localStorage.getItem('pageSize');
+    
+        if (savedPage) gotoPage(Number(savedPage));
+        if (savedPageSize) setPageSize(Number(savedPageSize));
+    }, []);
+  
 
     if (error) return <p>Error</p>;
     if (isLoading) return <p>Loading...</p>;
