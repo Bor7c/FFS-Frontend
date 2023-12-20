@@ -66,7 +66,7 @@ export function useDraftBreach() {
 
     const sendBreach = async () => {
 
-        const response = await axios(`http://localhost:8000/breaches/${breach.id}/update_status_user/`, {
+        const response = await axios(`http://localhost:8000/breaches/update_status_user/`, {
             method: "PUT",
             headers: {
                 'authorization': session_id
