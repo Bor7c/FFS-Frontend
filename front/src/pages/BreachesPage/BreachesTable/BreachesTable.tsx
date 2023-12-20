@@ -27,6 +27,11 @@ export const BreachesTable = () => {
             accessor: "fines",
             Cell: ({ value }) => { return value.map(fine => fine.title).join(', ') }
         },
+
+        {
+            Header: "Нарушитель",
+            accessor: "name",
+        },
         {
             Header: "Дата формирования",
             accessor: "formated_date",
