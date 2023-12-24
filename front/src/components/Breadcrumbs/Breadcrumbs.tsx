@@ -24,6 +24,7 @@ const Breadcrumbs = () => {
         "breaches": "Нарушения",
         "login": "Вход",
         "profile": "Профиль",
+        "add-fine": "Добавить Штраф"
     }
 
 

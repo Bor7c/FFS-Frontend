@@ -52,7 +52,8 @@ const Fines = () => {
             // Define columns as per your data
             {
                 Header: "Цена",
-                accessor: "price"
+                accessor: "price",
+                Cell: ({ value }) => `${value}₽` // предполагается, что value - это цена
             },
             {
                 Header: "Заголовок",
@@ -97,6 +98,9 @@ const Fines = () => {
                 <div className='search_in_menu'>
                     <SearchFines title={titleData} setTitle={setTitlePage}/>
                 </div>
+                <Link to="/add-fine">
+                    <CustomButton text="Добавить штраф" />
+                </Link>
             </div>
             <div className="bottom-container">
                 {/* Create table structure */}

@@ -41,6 +41,25 @@ export function useFine() {
             // Обработка ошибки, если получение ответа или запрос в принципе не удался
         }
     }
+
+    const createFine = async (FineData: any) => {
+        try {
+            const response = await axios({
+                method: 'POST',
+                headers: {
+                    'authorization': session_id
+                },
+                url: `http://127.0.0.1:8000/fines/add/`,
+                data: FineData,  // Передаем данные, которые хотим изменить, в теле запроса
+                
+            });
+    
+            setFine(response.data); // Обновляем состояние или что-то в этом роде
+        } catch (error) {
+            console.error("Error sending fine data: ", error);
+            // Обработка ошибки, если получение ответа или запрос в принципе не удался
+        }
+    }
     
 
     return {
@@ -48,5 +67,6 @@ export function useFine() {
         setFine,
         fetchFine,
         sendFine,
+        createFine
     };
 }

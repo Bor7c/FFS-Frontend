@@ -1,57 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import "./FinePageEdit.scss"
-import "./FinePage.scss"
+import "./AddFinePage.scss"
+
 import { useFine } from "../../hooks/useFine";
-import { useAuth } from '../../hooks/useAuth';
+
 
 const statuses: any = {
   active: 1,
   removed: 2,
 };
 
-const FinePage = () => {
-    const {is_moderator} = useAuth()
-    const { id } = useParams();
-    const FineId = id ? parseInt(id, 10) : null;
-    if(!is_moderator){
-
-    
-        const {fine, fetchFine} = useFine()
-    
-        useEffect(() => {
-            if (FineId !== null) {
-                fetchFine(FineId)
-            }
-        }, [FineId]);
-    
-        if (!fine) {
-            return <div>Loading...</div>;
-        }
-    
-        return (
-            <div className="container-2">
-                <span className='circle-image'>
-                    <img src={fine.image} alt=""/>
-                </span>
-    
-                <h1 className="short_text">{fine.title}</h1>
-    
-                <hr className="line" />
-    
-                <div className="container">
-                    <p className="info">
-                        {fine.text}
-                    </p>
-                </div>
-            </div>
-    
-        );
-    }
-
-    if(is_moderator){
-    
-    const { fine, fetchFine, sendFine } = useFine();
+const AddFinePage = () => {
+ 
+    const { createFine } = useFine();
     
 
     const [fileData, setFileData] = useState(null); // новое состояние для файла
@@ -67,30 +28,11 @@ const FinePage = () => {
         status: 'active', // начальное состояние с текстовым значением
     });
 
-    const [isDataFetched, setIsDataFetched] = useState(false);
+
 
     useEffect(() => {
-        // Загружаем данные только один раз
-        if (FineId !== null && !isDataFetched) {
-            fetchFine(FineId).then(() => {
-                // после получения данных устанавливаем isDataFetched в true
-                setIsDataFetched(true);
-            });
-        }
-    }, [FineId, isDataFetched]);
-
-    useEffect(() => {
-        // Обновляем форму, когда данные fine изменились
-        if (fine && isDataFetched) {
-            setFineData({
-                title: fine.title || '',
-                image: fine.image || null,
-                text: fine.text || '',
-                price: fine.price || '',
-                status: fine.status ? (fine.status === statuses.active ? 'active' : 'removed') : 'active',
-            });
-        }
-    }, [fine, isDataFetched]);
+   
+    }, []);
 
     
     
@@ -117,7 +59,7 @@ const FinePage = () => {
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: any) => {
         e.preventDefault();
     
         const formData = new FormData();
@@ -131,7 +73,7 @@ const FinePage = () => {
             formData.append('image', fileData);
         }
     
-        sendFine(FineId, formData).then(() => {
+        createFine(formData).then(() => {
             // navigate("/fines");
         });
     };
@@ -145,7 +87,7 @@ const FinePage = () => {
 
     return (
         <div className="container-1">
-            <h1>Редактировать Штраф</h1>
+            <h1>Добавить Штраф</h1>
             <form onSubmit={handleSubmit} className="fine-form" encType="multipart/form-data">
                 <label htmlFor="title">Заголовок</label>
                 <input
@@ -195,11 +137,10 @@ const FinePage = () => {
                     onChange={handleChange}
                 ></textarea>
 
-                <button type="submit">Редактировать</button>
+                <button type="submit">Добавить Штраф</button>
             </form>
         </div>
     );
-    }
 };
 
-export default FinePage;
+export default AddFinePage;
