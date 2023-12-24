@@ -13,6 +13,7 @@ import BreachPage from "./pages/BreachPage/BreachPage";
 import {QueryClient, QueryClientProvider} from "react-query";
 import Breadcrumbs from "./components/Breadcrumbs/Breadcrumbs";
 import FinesTable from "./pages/FinesPage/FinesTable/FinesTable.tsx";
+import FinePageEdit from "./pages/FinePageEdit/FinePageEdit.tsx";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -38,7 +39,7 @@ root.render(
                         <Route path="fines/" element={<Fines/>}/>
                         <Route path="fines/:id" element={<Fine/>}/>
                         <Route path="fines_change/" element={<FinesTable/>}/>
-                        <Route path="fines_change/:id" element={<Fine/>}/>
+                        <Route path="fines_change/:id" element={<FinePageEdit/>}/>
                         <Route path="breaches/" element={<Breaches/>}/>
                         <Route path="breaches/draft/" element={<BreachPage/>}/>
                         <Route path="login/" element={<LoginPage/>}/>

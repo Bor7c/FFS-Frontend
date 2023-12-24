@@ -1,0 +1,53 @@
+.container-1 {
+    max-width: 600px; // set a max-width for the form for better readability
+    margin: 0 auto; // center the container
+    padding: 20px; // add some padding around the content
+    background-color: #f7f7f7; // a light grey background
+    border-radius: 8px; // rounded corners for the container
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // slight shadow for depth
+  
+    h1 {
+      text-align: center; // center the title
+      color: #333; // dark grey color for the text
+      margin-bottom: 30px; // space below the title
+    }
+  
+    // Styling for the form
+    .fine-form {
+      display: flex;
+      flex-direction: column;
+  
+      label {
+        font-weight: bold; // make labels bold
+        margin-bottom: 8px; // space below the label
+      }
+  
+      input[type="text"],
+      textarea {
+        padding: 10px; // padding inside inputs and textarea
+        margin-bottom: 20px; // space below each input/textarea
+        border: 1px solid #ccc; // border color
+        border-radius: 4px; // rounded corners for the inputs
+  
+        &:focus {
+          border-color: #007bff; // border color on focus
+          box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); // glow effect on focus
+        }
+      }
+  
+      button {
+        padding: 10px 15px; // padding for the button
+        color: #fff; // white text color
+        background-color: #007bff; // blue background
+        border: none; // no border
+        border-radius: 4px; // rounded corners
+        cursor: pointer; // indicate that it's clickable
+        transition: background-color 0.2s; // transition for background color
+  
+        &:hover {
+          background-color: #0056b3;
+        }
+      }
+    }
+  }
+  
