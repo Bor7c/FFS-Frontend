@@ -12,6 +12,7 @@ import "./styles/styles.scss"
 import BreachPage from "./pages/BreachPage/BreachPage";
 import {QueryClient, QueryClientProvider} from "react-query";
 import Breadcrumbs from "./components/Breadcrumbs/Breadcrumbs";
+import FinesTable from "./pages/FinesPage/FinesTable/FinesTable.tsx";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -36,6 +37,8 @@ root.render(
                         <Route path="/" element={<Navigate to="/fines" replace />} />
                         <Route path="fines/" element={<Fines/>}/>
                         <Route path="fines/:id" element={<Fine/>}/>
+                        <Route path="fines_change/" element={<FinesTable/>}/>
+                        <Route path="fines_change/:id" element={<Fine/>}/>
                         <Route path="breaches/" element={<Breaches/>}/>
                         <Route path="breaches/draft/" element={<BreachPage/>}/>
                         <Route path="login/" element={<LoginPage/>}/>

@@ -1,13 +1,13 @@
 import {useState, useEffect} from 'react'
 import { ListFines } from '../../components/Interfaces.ts';
-import SearchFines from '../../components/SearchBar/Search.tsx';
-import FineCard from "../../components/FineCard/FineCard";
-import BreachBasket from "../../components/BreachBasket/BreachBasket";
-import "./FinesPage.scss"
+import SearchFines from './SearchBar/Search.js';
+import FineCard from "../../../components/FineCard/FineCard.js";
+import BreachBasket from "../../../components/BreachBasket/BreachBasket.js";
+import "./FinesPage.sass"
 import axios from "axios";
-import {useSsid} from "../../hooks/useSsid";
-import { mockFines } from '../../assets/Mock.ts';
-import { useAuth } from '../../hooks/useAuth.ts';
+import {useSsid} from "../../../hooks/useSsid.js";
+import { mockFines } from '../../../assets/Mock.js';
+import { useAuth } from '../../../hooks/useAuth.js';
 
 const Fines = () => {
     

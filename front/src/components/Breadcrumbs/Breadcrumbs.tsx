@@ -19,7 +19,8 @@ const Breadcrumbs = () => {
         "draft": "Новое нарушение",
         "breaches": "Нарушения",
         "login": "Вход",
-        "profile": "Профиль"
+        "profile": "Профиль",
+        "fines_change": "Изменение Штрафов",
     }
 
     const crumbs = location.pathname.split('/').filter(crumb => crumb !== '').map(crumb => {
@@ -42,6 +43,21 @@ const Breadcrumbs = () => {
         }
 
         if (currentLink.match(new RegExp('fines/(\d*)')))
+        {
+            return (
+                <div className={"crumb"} key={crumb}>
+
+                    <Link to={currentLink}>
+                        {fine?.title}
+                    </Link>
+
+                    <FaChevronRight className={"chevron-icon"}/>
+
+                </div>
+            )
+        }
+
+        if (currentLink.match(new RegExp('fines_change/(\d*)')))
         {
             return (
                 <div className={"crumb"} key={crumb}>

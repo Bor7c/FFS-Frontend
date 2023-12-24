@@ -5,7 +5,7 @@ import "./navbar.scss"
 
 const Navbar = () => {
 
-    const {is_authenticated, user_name, auth} = useAuth()
+    const {is_authenticated, is_moderator, user_name, auth} = useAuth()
 
     useEffect(() => {
         auth()
@@ -26,9 +26,19 @@ const Navbar = () => {
                     <li>Штрафы</li>
                 </Link>
 
+
+                {is_authenticated && is_moderator &&
+                <Link to={`/fines_change`}>
+                    <li>Редактировать Штрафы</li>
+                </Link>
+                }
+
+                {is_authenticated && 
                 <Link to={`/breaches`}>
                     <li>Нарушения</li>
                 </Link>
+                }
+
 
                 {!is_authenticated && 
                     <Link to={`/login`}>

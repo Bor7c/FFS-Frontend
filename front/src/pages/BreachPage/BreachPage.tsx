@@ -8,17 +8,17 @@ import {useEffect} from "react";
 const BreachPage = () => {
     const navigate = useNavigate()
 
-    const {is_authenticated, is_moderator} = useAuth()
+    const {is_authenticated} = useAuth()
 
     const {breach, sendBreach, deleteBreach} = useDraftBreach()
 
     useEffect(() => {
-        if (!is_authenticated || is_moderator) {
+        if (!is_authenticated) {
             navigate("/fines")
         }
     }, [])
 
-    if (!is_authenticated || is_moderator){
+    if (!is_authenticated){
         return
     }
 

@@ -100,7 +100,7 @@ export function useAuth() {
 
     const data = {
         is_authenticated: true,
-        is_moderator: response.data["admin_pass"],
+        is_moderator: response.data["is_moderator"],
         user_id: response.data["user_id"],
         user_name: response.data["username"],
     }

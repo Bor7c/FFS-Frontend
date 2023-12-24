@@ -1,6 +1,8 @@
+
 import {BreachesTable} from "./BreachesTable/BreachesTable";
 
 const Breaches = () => {
+
     return (
         <div>
             <BreachesTable />

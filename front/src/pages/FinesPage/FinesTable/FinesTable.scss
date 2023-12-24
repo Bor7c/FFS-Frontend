@@ -1,0 +1,57 @@
+.fines-table {
+    width: 100%; 
+    border-collapse: separate; /* Change to separate to handle border radius */
+    border-spacing: 0; /* Remove the default cell spacing to maintain the design */
+    background: #ffffff;
+    border-radius: 15px; /* Add rounded corners to the table */
+    overflow: hidden; /* Ensures inner elements don't overflow */
+}
+
+.fines-table th,
+.fines-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #dddddd;
+    font-size: 16px;
+}
+
+.fines-table th {
+    background: #eeeeee;
+    color: #333333;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.fines-table tr:first-child th:first-child {
+    border-top-left-radius: 8px; /* Rounded top-left corner of the table header */
+}
+
+.fines-table tr:first-child th:last-child {
+    border-top-right-radius: 8px; /* Rounded top-right corner of the table header */
+}
+
+.fines-table tr:last-child td:first-child {
+    border-bottom-left-radius: 8px; /* Rounded bottom-left corner of the last row */
+}
+
+.fines-table tr:last-child td:last-child {
+    border-bottom-right-radius: 8px; /* Rounded bottom-right corner of the last row */
+}
+
+.fines-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+@media (max-width: 768px) {
+    .fines-wrapper {
+        padding: 10px;
+    }
+
+    .fines-table th, 
+    .fines-table td {
+        padding: 10px 8px;
+        font-size: 14px;
+    }
+}
+
+/* Rest of your CSS */
