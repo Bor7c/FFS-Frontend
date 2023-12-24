@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import {FaChevronRight} from "react-icons/fa6";
 import {FaHome} from "react-icons/fa";
 import {useFine} from "../../hooks/useFine";
+import { useAuth } from "../../hooks/useAuth";
 
 const Breadcrumbs = () => {
 
@@ -11,17 +12,20 @@ const Breadcrumbs = () => {
     let currentLink = ''
 
     const { fine, setFine } = useFine()
+    const {is_moderator} = useAuth()
 
     const resetSelectedSpare = () => setFine(undefined)
 
+    const fines = is_moderator ? "Редактировать Штрафы" : "Штрафы";
+
     const topics = {
-        "fines": "Штрафы",
+        "fines": fines,
         "draft": "Новое нарушение",
         "breaches": "Нарушения",
         "login": "Вход",
         "profile": "Профиль",
-        "fines_change": "Изменение Штрафов",
     }
+
 
     const crumbs = location.pathname.split('/').filter(crumb => crumb !== '').map(crumb => {
 
@@ -57,20 +61,20 @@ const Breadcrumbs = () => {
             )
         }
 
-        if (currentLink.match(new RegExp('fines_change/(\d*)')))
-        {
-            return (
-                <div className={"crumb"} key={crumb}>
+        // if (currentLink.match(new RegExp('fines_change/(\d*)')))
+        // {
+        //     return (
+        //         <div className={"crumb"} key={crumb}>
 
-                    <Link to={currentLink}>
-                        {fine?.title}
-                    </Link>
+        //             <Link to={currentLink}>
+        //                {fine?.title}
+        //             </Link>
 
-                    <FaChevronRight className={"chevron-icon"}/>
+        //             <FaChevronRight className={"chevron-icon"}/>
 
-                </div>
-            )
-        }
+        //         </div>
+        //     )
+        // }
     });
 
     return (

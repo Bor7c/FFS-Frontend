@@ -14,7 +14,7 @@ import CustomButton from '../../components/CustomButton/CustomButton.js';
 import BreachBasket from '../../components/BreachBasket/BreachBasket.js';
 import FineCard from '../../components/FineCard/FineCard.js';
 
-const FinesTable = () => {
+const Fines = () => {
     
     const [fines, setFines] = useState<ListFines>({
         breach_id: null,
@@ -64,7 +64,7 @@ const FinesTable = () => {
                 id: "actions",
                 // Cell property может быть функцией, которая принимает объект с данными ячейки
                 Cell: ({ row }) => (
-                    <Link to={`/fines_change/${row.original.id}`}>
+                    <Link to={`/fines/${row.original.id}`}>
                         <CustomButton text="Редактировать"  />
                     </Link>
                 )
@@ -154,4 +154,4 @@ const FinesTable = () => {
 
 }
 
-export default FinesTable;
+export default Fines;

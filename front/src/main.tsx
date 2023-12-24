@@ -1,6 +1,7 @@
 import {BrowserRouter, Route, Routes, Navigate} from "react-router-dom";
 import Fines from "./pages/FinesPage/FinesPage.tsx";
-import Fine from "./pages/FinePage/FinePage.tsx";
+import FinePage from "./pages/FinePage/FinePage.tsx";
+
 import Breaches from "./pages/BreachesPage/BreachesPage.tsx";
 import ReactDOM from "react-dom/client";
 import LoginPage from "./pages/LoginPage/LoginPage.tsx";
@@ -12,8 +13,9 @@ import "./styles/styles.scss"
 import BreachPage from "./pages/BreachPage/BreachPage";
 import {QueryClient, QueryClientProvider} from "react-query";
 import Breadcrumbs from "./components/Breadcrumbs/Breadcrumbs";
-import FinesTable from "./pages/FinesPage/FinesTable.tsx";
-import FinePageEdit from "./pages/FinePageEdit/FinePageEdit.tsx";
+
+
+
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -37,11 +39,11 @@ root.render(
                     <Routes>
                         <Route path="/" element={<Navigate to="/fines" replace />} />
                         <Route path="fines/" element={<Fines/>}/>
-                        <Route path="fines/:id" element={<Fine/>}/>
-                        {/* <Route path="fines_change/" element={<FinesTable/>}/> */}
-                        <Route path="fines_change/:id" element={<FinePageEdit/>}/>
+                        <Route path="fines/:id" element={<FinePage/>}/>
+
                         <Route path="breaches/" element={<Breaches/>}/>
                         <Route path="breaches/draft/" element={<BreachPage/>}/>
+
                         <Route path="login/" element={<LoginPage/>}/>
                         <Route path="profile/" element={<ProfilePage/>}/>
                     </Routes>

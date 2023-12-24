@@ -2,7 +2,7 @@ import {TableInstance, useTable, usePagination} from "react-table"
 
 import "./BreachesTable.sass"
 import axios from "axios";
-import {STATUSES} from "/src/utils/consts";
+import {STATUSES} from "/src/utils/consts.ts";
 import {ru} from "/src/utils/momentLocalization";
 import moment from "moment";
 import {useQuery} from "react-query";
