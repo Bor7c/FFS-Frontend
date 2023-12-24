@@ -94,7 +94,7 @@ export function useDraftBreach() {
         }
     }
 
-    const deleteBreachFromFine = async (fine_id) => {
+    const deleteFineFromBreach = async (fine_id) => {
         const response = await axios(`http://localhost:8000/breaches/${breach.id}/delete_fine/${fine_id}/`, {
             method: "DELETE",
             headers: {
@@ -114,7 +114,7 @@ export function useDraftBreach() {
         saveBreach,
         sendBreach,
         deleteBreach,
-        deleteBreachFromFine,
+        deleteFineFromBreach,
         fetchDraftBreach
     };
 }

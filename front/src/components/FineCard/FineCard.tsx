@@ -11,14 +11,14 @@ const FineCard = ({fine}:{fine:Fine}) => {
 
   const {is_authenticated, is_moderator} = useAuth()
 
-  const {addFineToBreach, deleteBreachFromFine} = useDraftBreach()
+  const {addFineToBreach, deleteFineFromBreach} = useDraftBreach()
 
   const handleAdd = async () => {
     await addFineToBreach(fine.id)
   }
 
   const handleDelete = async () => {
-    await deleteBreachFromFine(fine.id)
+    await deleteFineFromBreach(fine.id)
   }
 
   return (
