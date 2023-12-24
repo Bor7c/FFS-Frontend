@@ -23,11 +23,31 @@ const FinePageEdit = () => {
         status: 'active', // начальное состояние с текстовым значением
     });
 
+    const [isDataFetched, setIsDataFetched] = useState(false);
+
     useEffect(() => {
-        if (FineId !== null) {
-            fetchFine(FineId);
+        // Загружаем данные только один раз
+        if (FineId !== null && !isDataFetched) {
+            fetchFine(FineId).then(() => {
+                // после получения данных устанавливаем isDataFetched в true
+                setIsDataFetched(true);
+            });
         }
-    }, [FineId, fetchFine]);
+    }, [FineId, isDataFetched]);
+
+    useEffect(() => {
+        // Обновляем форму, когда данные fine изменились
+        if (fine && isDataFetched) {
+            setFineData({
+                title: fine.title || '',
+                image: fine.image || null,
+                text: fine.text || '',
+                price: fine.price || '',
+                status: fine.status ? (fine.status === statuses.active ? 'active' : 'removed') : 'active',
+            });
+        }
+    }, [fine, isDataFetched]);
+    
 
     const handleChange = (e: any) => {
         const { name, value } = e.target;
