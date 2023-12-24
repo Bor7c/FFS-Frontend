@@ -11,7 +11,9 @@ const statuses: any = {
 const FinePageEdit = () => {
     const { id } = useParams();
     const FineId = id ? parseInt(id, 10) : null;
-    const { fine, fetchFine, sentFine } = useFine();
+    const { fine, fetchFine, sendFine } = useFine();
+
+    const [fileData, setFileData] = useState(null); // новое состояние для файла
 
     const navigate = useNavigate();
 
@@ -60,28 +62,37 @@ const FinePageEdit = () => {
         setFineData({ ...fineData, status: e.target.value });
     };
 
-    const handleSubmit = (e: any) => {
+
+    const handleFileChange = (e: any) => {
+        // Когда пользователь выбирает файл, сохраняем его в состояние
+        const file = e.target.files[0];
+        if(file) {
+            setFileData(file); // сохраняем файл, а не url
+            // Также обновите fineData, чтобы сохранить имя файла
+            setFineData({ ...fineData, image: file.name }); // предполагаем, что sendFine использует имя файла
+        }
+    };
+
+    const handleSubmit = (e) => {
         e.preventDefault();
-        
+    
         const formData = new FormData();
-        
+    
         formData.append('title', fineData.title);
         formData.append('text', fineData.text);
         formData.append('price', fineData.price);
-        // Преобразуем текстовое значение статуса в соответствующее ему числовое значение
         formData.append('status', statuses[fineData.status]);
-        
-        // Добавляем файл, если он был выбран
-        if (fineData.image) {
-            formData.append('image', fineData.image);
+    
+        if (fileData) {
+            formData.append('image', fileData);
         }
-        
-        if (FineId !== null) {
-            sentFine(FineId, formData).then(() => {
-                navigate("/fines");
-            });
-        }
+    
+        sendFine(FineId, formData).then(() => {
+            // navigate("/fines");
+        });
     };
+    
+    
 
     const statusOptions = [
         { text: "Действует", value: "active" },
@@ -129,7 +140,7 @@ const FinePageEdit = () => {
                     type="file"
                     id="image"
                     name="image"
-                    onChange={handleChange}
+                    onChange={handleFileChange}
                 />
 
                 <label htmlFor="text">Description</label>

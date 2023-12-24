@@ -7,7 +7,8 @@ import Podrobnee_button from "../../components/Podrobnee_button"
 const LoginPage = () => {
 
 
-    const {login, auth} = useAuth()
+    const {is_moderator, login, auth} = useAuth()
+
     
     const navigate = useNavigate()
 
