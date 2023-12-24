@@ -1,5 +1,5 @@
 import {TableInstance, useTable, usePagination} from "react-table"
-import React, {useMemo} from "react";
+
 import "./BreachesTable.sass"
 import axios from "axios";
 import {STATUSES} from "/src/utils/consts";
@@ -8,9 +8,18 @@ import moment from "moment";
 import {useQuery} from "react-query";
 import {useSsid} from "../../../hooks/useSsid";
 
+
+import React, { useState, useMemo, useEffect } from "react";
+
 export const BreachesTable = () => {
 
     const { session_id } = useSsid()
+
+    const [filters, setFilters] = useState({
+        startDate: '',
+        endDate: '',
+        Status: ''
+    });
 
     const COLUMNS = [
         {
@@ -41,11 +50,17 @@ export const BreachesTable = () => {
 
 
     const fetchBreachesData = async () => {
+        const { startDate, endDate, Status } = filters;
 
         const {data} = await axios(`http://localhost:8000/breaches/`, {
             method: "GET",
             headers: {
                 'authorization': `${session_id}`
+            },
+            params: {
+                start_date: startDate,
+                end_date: endDate,
+                status: Status,
             }
         })
 
@@ -54,7 +69,7 @@ export const BreachesTable = () => {
     }
 
     const { isLoading, error, data, isSuccess } = useQuery(
-        ['breaches'],
+        ['breaches', filters], // Include filters in the query key
         () => fetchBreachesData(),
         {
             keepPreviousData: true,
@@ -63,20 +78,18 @@ export const BreachesTable = () => {
 
     const tableColumns = useMemo(() => COLUMNS, [])
 
-    const tableInstance = useTable<TableInstance>({
-        columns:tableColumns,
-        data: isSuccess ? data : [],
-        initialState: {
-            pageIndex: 0,
-            pageSize: 5
-        },
-        manualPagination: true,
-        pageCount: 1,
-    }, usePagination)
+    // const tableInstance = useTable<TableInstance>({
+    //     columns:tableColumns,
+    //     data: isSuccess ? data : [],
+    //     initialState: {
+    //         pageIndex: 0,
+    //         pageSize: 5
+    //     },
+    //     manualPagination: true,
+    //     pageCount: 1,
+    // }, usePagination)
 
     
-
-
     const {
         getTableProps,
         getTableBodyProps,
@@ -120,8 +133,72 @@ export const BreachesTable = () => {
     if (isLoading) return <p>Loading...</p>;
 
 
+     // Form submit handler to update the filters
+    const handleSubmit = (event: any) => {
+        event.preventDefault();
+        // Trigger the filter update
+        // Since the useQuery 'breaches' depends on the filters, it will automatically refetch
+    };
+
+    const handleDateChange = (event: any) => {
+        const { name, value } = event.target;
+    
+        let formattedValue = value;
+        if (value) {
+            formattedValue = moment(value).format("YYYY-MM-DDTHH:mm"); // Обратите внимание на изменение формата
+        }
+    
+        setFilters({
+            ...filters,
+            [name]: formattedValue
+        });
+    
+    };
+
+    const handleStatusChange = (event: any) => {
+        const { name, value } = event.target;
+ 
+        setFilters({
+            ...filters,
+            [name]: value
+        });
+    
+    };
+
+
     return (
         <div className="table-wrapper">
+
+            <form onSubmit={handleSubmit}>
+            <input
+                type="datetime-local"
+                name="startDate"
+                value={filters.startDate}
+                onChange={handleDateChange}
+            />
+            <input
+                type="datetime-local"
+                name="endDate"
+                value={filters.endDate}
+                onChange={handleDateChange}
+            />
+               <select
+                  name="Status"
+                  value={filters.Status}
+                  onChange={handleStatusChange}
+              >
+                  <option value="">Все</option>
+                  {STATUSES.map((status: any) => (
+                      <option key={status.id} value={status.id}>
+                          {status.name}
+                      </option>
+                  ))}
+              </select>
+                <button type="submit">Фильтр</button>
+            </form>
+
+
+
 
             <table {...getTableProps()} className="orders-table">
                 <thead>
