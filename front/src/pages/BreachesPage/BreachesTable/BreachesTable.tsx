@@ -54,6 +54,95 @@ export const BreachesTable = () => {
 
 
 
+
+// if (is_moderator){
+//     let pollingInterval: any;
+
+//     // Function to start short polling
+//     const startPolling = () => {
+//         // Here we're setting up an interval to fetch breaches data every 5 seconds
+//         // You can change the interval as you wish.
+//         pollingInterval = setInterval(() => {
+//             console.log('Polling breaches data...');
+//             fetchBreachesData();
+//         }, 3000); // polling interval set to 5 seconds
+//     };
+
+//     // Function to stop short polling
+//     const stopPolling = () => {
+//         clearInterval(pollingInterval);
+//     };
+
+//     // useEffect hook to manage the polling lifecycle
+//     useEffect(() => {
+//         // Only start polling if the user is a moderator
+//         if (is_moderator) {
+//             startPolling();
+//         }
+        
+//         // Return cleanup function to stop polling when the component unmounts or the moderator status changes
+//         return () => {
+//             stopPolling();
+//         };
+//     }, [is_moderator]); // Dependencies array, polling will restart when is_moderator changes
+
+//     // ...(rest of your component code remains unchanged)
+// }
+
+    
+
+
+
+    // const handleAccept = async (row: any) => {
+    //     try {
+    //         const response = await axios(`http://localhost:8000/breaches/${row.original.id}/update_status_admin/`, {
+    //             method: "PUT",
+    //             headers: {
+    //                 "Content-type": "application/json; charset=UTF-8",
+    //                 'authorization': session_id
+    //             },
+    //             data: {"status": 3}
+    //         });
+    
+    //         // Если запрос успешен, можно добавить логику для обновления таблицы или данных в UI.
+    //         console.log('Accept response:', response);
+    
+    //         // Возможно, вам понадобится вызвать refetch для обновления таблицы:
+    //         // queryClient.invalidateQueries('breaches');
+    
+    //         return response.data;
+    //     } catch (error) {
+    //         console.error('Error accepting breach:', error);
+    //         // Обработайте ошибку, возможно показать сообщение пользователю
+    //     }
+    // }
+
+    // const handleReject = async (row: any) => {
+    //     try {
+    //         const response = await axios(`http://localhost:8000/breaches/${row.original.id}/update_status_admin/`, {
+    //             method: "PUT",
+    //             headers: {
+    //                 "Content-type": "application/json; charset=UTF-8",
+    //                 'authorization': session_id
+    //             },
+    //             data: {"status": 4}
+    //         });
+    
+    //         // Если запрос успешен, можно добавить логику для обновления таблицы или данных в UI.
+    //         console.log('Accept response:', response);
+    
+    //         // Возможно, вам понадобится вызвать refetch для обновления таблицы:
+    //         // queryClient.invalidateQueries('breaches');
+    
+    //         return response.data;
+    //     } catch (error) {
+    //         console.error('Error accepting breach:', error);
+    //         // Обработайте ошибку, возможно показать сообщение пользователю
+    //     }
+
+    // }
+
+
     const fetchBreachesData = async () => {
         const { startDate, endDate, Status } = filters;
 
