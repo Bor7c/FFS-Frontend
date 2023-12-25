@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import "./AddFinePage.scss"
-
+import { useParams } from 'react-router-dom';
+import "./FineEditPage.scss"
 import { useFine } from "../../hooks/useFine";
 
 
@@ -10,16 +9,12 @@ const statuses: any = {
   removed: 2,
 };
 
-const AddFinePage = () => {
- 
-    const { createFine } = useFine();
-    
 
+const FineEdit = () => {
+    const { id } = useParams();
+    const FineId = id ? parseInt(id, 10) : null;
+    const { fine, fetchFine, sendFine } = useFine();
     const [fileData, setFileData] = useState(null); // новое состояние для файла
-
-    const navigate = useNavigate();
-
-
     const [fineData, setFineData] = useState({
         title: '',
         image: null, // для файла изображения используем null в качестве начального значения
@@ -28,11 +23,40 @@ const AddFinePage = () => {
         status: 'active', // начальное состояние с текстовым значением
     });
 
-
+    const [isDataFetched, setIsDataFetched] = useState(false);
 
     useEffect(() => {
-   
+        // Загружаем данные только один раз
+        if (FineId !== null && !isDataFetched) {
+            fetchFine(FineId).then(() => {
+                // после получения данных устанавливаем isDataFetched в true
+                setIsDataFetched(true);
+            });
+        }
+    }, [FineId, isDataFetched]);
+
+    useEffect(() => {
+        // Обновляем форму, когда данные fine изменились
+        if (fine && isDataFetched) {
+            setFineData({
+                title: fine.title || '',
+                image: fine.image || null,
+                text: fine.text || '',
+                price: fine.price || '',
+                status: fine.status ? (fine.status === statuses.active ? 'active' : 'removed') : 'active',
+            });
+        }
+    }, [fine, isDataFetched]);
+
+    useEffect(() => {
+        // Загружаем данные только один раз
+        if (FineId !== null) {
+            fetchFine(FineId).then(() => {
+                setIsDataFetched(true);
+            });
+        }
     }, []);
+
 
     
     
@@ -73,7 +97,7 @@ const AddFinePage = () => {
             formData.append('image', fileData);
         }
     
-        createFine(formData).then(() => {
+        sendFine(FineId, formData).then(() => {
             // navigate("/fines");
         });
     };
@@ -87,7 +111,7 @@ const AddFinePage = () => {
 
     return (
         <div className="container-1">
-            <h1>Добавить Штраф</h1>
+            <h1>Редактировать Штраф</h1>
             <form onSubmit={handleSubmit} className="fine-form" encType="multipart/form-data">
                 <label htmlFor="title">Заголовок</label>
                 <input
@@ -137,10 +161,10 @@ const AddFinePage = () => {
                     onChange={handleChange}
                 ></textarea>
 
-                <button type="submit">Добавить Штраф</button>
+                <button type="submit">Редактировать</button>
             </form>
         </div>
     );
 };
 
-export default AddFinePage;
+export default FineEdit

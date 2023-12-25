@@ -13,7 +13,9 @@ import "./styles/styles.scss"
 import BreachPage from "./pages/BreachPage/BreachPage";
 import {QueryClient, QueryClientProvider} from "react-query";
 import Breadcrumbs from "./components/Breadcrumbs/Breadcrumbs";
-import AddFinePage from "./pages/AddFinePage/AddFinePage.tsx";
+import AddFinePage from "./pages/FineAddPage/FineAddPage.tsx";
+import FinesTable from "./pages/FinesTablePage/FinesTablePage.tsx";
+import FineEdit from "./pages/FineEditPage/FineEditPage.tsx";
 
 
 
@@ -41,7 +43,9 @@ root.render(
                     <Routes>
                         <Route path="/" element={<Navigate to="/fines" replace />} />
                         <Route path="fines/" element={<Fines/>}/>
+                        <Route path="fines_edit/" element={<FinesTable/>}/>
                         <Route path="fines/:id" element={<FinePage/>}/>
+                        <Route path="fines_edit/:id" element={<FineEdit/>}/>
                         <Route path="add-fine" element={<AddFinePage/>}/>
 
                         <Route path="breaches/" element={<Breaches/>}/>

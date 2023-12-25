@@ -22,36 +22,36 @@ const Navbar = () => {
 
             <ul className="list">
 
-                {!is_moderator &&
-                <Link to={`/fines`}>
-                    <li>Штрафы</li>
+
+            <Link to={`/fines`}>
+                <li>Штрафы</li>
+            </Link>
+
+
+            {is_authenticated && is_moderator &&
+            <Link to={`/fines_edit`}>
+                <li>Редактировать Штрафы</li>
+            </Link>
+            }
+
+            {is_authenticated && 
+            <Link to={`/breaches`}>
+                <li>Нарушения</li>
+            </Link>
+            }
+
+
+            {!is_authenticated && 
+                <Link to={`/login`}>
+                    <li>Вход</li>
                 </Link>
-                }
+            }      
 
-                {is_authenticated && is_moderator &&
-                <Link to={`/fines`}>
-                    <li>Редактировать Штрафы</li>
+            {is_authenticated && 
+                <Link to={`/profile`}>
+                    <li>{user_name}</li>
                 </Link>
-                }
-
-                {is_authenticated && 
-                <Link to={`/breaches`}>
-                    <li>Нарушения</li>
-                </Link>
-                }
-
-
-                {!is_authenticated && 
-                    <Link to={`/login`}>
-                        <li>Вход</li>
-                    </Link>
-                }      
-
-                {is_authenticated && 
-                    <Link to={`/profile`}>
-                        <li>{user_name}</li>
-                    </Link>
-                }      
+            }      
 
 
             </ul>

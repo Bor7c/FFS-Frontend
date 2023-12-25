@@ -16,15 +16,16 @@ const Breadcrumbs = () => {
 
     const resetSelectedSpare = () => setFine(undefined)
 
-    const fines = is_moderator ? "Редактировать Штрафы" : "Штрафы";
+    // const fines = is_moderator ? "Редактировать Штрафы" : "Штрафы";
 
     const topics = {
-        "fines": fines,
+        "fines": "Штрафы",
         "draft": "Новое нарушение",
         "breaches": "Нарушения",
         "login": "Вход",
         "profile": "Профиль",
-        "add-fine": "Добавить Штраф"
+        "add-fine": "Добавить Штраф",
+        "fines_edit": "Редактировать Штрафы"
     }
 
 
@@ -62,20 +63,20 @@ const Breadcrumbs = () => {
             )
         }
 
-        // if (currentLink.match(new RegExp('fines_change/(\d*)')))
-        // {
-        //     return (
-        //         <div className={"crumb"} key={crumb}>
+        if (currentLink.match(new RegExp('fines_edit/(\d*)')))
+        {
+            return (
+                <div className={"crumb"} key={crumb}>
 
-        //             <Link to={currentLink}>
-        //                {fine?.title}
-        //             </Link>
+                    <Link to={currentLink}>
+                       {fine?.title}
+                    </Link>
 
-        //             <FaChevronRight className={"chevron-icon"}/>
+                    <FaChevronRight className={"chevron-icon"}/>
 
-        //         </div>
-        //     )
-        // }
+                </div>
+            )
+        }
     });
 
     return (
