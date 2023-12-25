@@ -16,7 +16,7 @@ import FineCard from '../../components/FineCard/FineCard.js';
 
 const Fines = () => {
     
-    const [fines, setFines] = useState<ListFines>({
+    const [fines, setFines] = useState({
         breach_id: null,
         fines: [],
     });
@@ -28,20 +28,36 @@ const Fines = () => {
     const {is_moderator} = useAuth()
 
     const searchFines = async () => {
+        try {
+            const { data } = await axios(`http://127.0.0.1:8000/fines/search`, {
+                method: "GET",
+                headers: {
+                    'authorization': session_id
+                },
+                params: {
+                    title: titleData
+                }
+            });
+    
+            setFines(data);
+        } catch (error) {
+            console.error("Не удалось загрузить данные с сервера.", error);
+            const filteredFines = filterFines(mockFines, titleData);
+            setFines({
+                breach_id: null,
+                fines: filteredFines,
+            });
+        }
+    };
 
-        const {data} = await axios(`http://127.0.0.1:8000/fines/search`, {
-            method: "GET",
-            headers: {
-                'authorization': session_id
-            },
-            params: {
-                title: titleData
-            }
-        })
-
-        setFines(data)
-
-    }
+    const filterFines = (fines: any, searchText: any) => {
+        return fines.filter((fine: any) => {
+            const titleLowerCase = fine.title.toLowerCase();
+            const searchTextLowerCase = searchText.toLowerCase();
+            return titleLowerCase.includes(searchTextLowerCase);
+        });
+    };
+    
 
    
 
@@ -96,7 +112,10 @@ const Fines = () => {
         <div className="fines-wrapper">
             <div className="top-container">
                 <div className='search_in_menu'>
-                    <SearchFines title={titleData} setTitle={setTitlePage}/>
+                <SearchFines title={titleData} setTitle={(newTitle) => {
+                    setTitlePage(newTitle);
+                    searchFines(); }}
+                />
                 </div>
                 <Link to="/add-fine">
                     <CustomButton text="Добавить штраф" />
@@ -138,7 +157,10 @@ const Fines = () => {
             <div className="top-container">
 
                 <div className='search_in_menu'>
-                    <SearchFines title={titleData} setTitle={setTitlePage}/>
+                <SearchFines title={titleData} setTitle={(newTitle) => {
+                    setTitlePage(newTitle);
+                    searchFines(); }}
+                />
                 </div>
 
             <BreachBasket />
