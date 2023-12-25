@@ -1,15 +1,18 @@
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../hooks/useAuth"
+import { useDraftBreach } from "../../hooks/useDraftBreach"
 
 const ProfilePage = () => {
 
     const navigate = useNavigate()
 
     const {logOut, user_name} = useAuth()
+    const { resetBreach } = useDraftBreach()
 
 
     const handleLogOut = async () => {
         await logOut()
+        resetBreach()
 
         navigate("/fines")
     }
@@ -19,12 +22,6 @@ const ProfilePage = () => {
 
     
     return (
-        // <div>
-        //     <h3>Профиль</h3>
-
-        //     <span>{user_name}</span>
-        //     <button onClick={handleLogOut}>Выйти</button>
-        // </div>
         <section> 
 
           <div className="signin"> 

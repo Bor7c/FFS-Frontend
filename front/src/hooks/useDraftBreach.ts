@@ -17,6 +17,10 @@ export function useDraftBreach() {
         dispatch(updateBreach(value))
     }
 
+    const resetBreach = () => {
+        dispatch(updateBreach(null))
+    }
+
     const fetchDraftBreach = async () => {
 
         const response = await axios(`http://localhost:8000/breaches/draft/`, {
@@ -115,6 +119,7 @@ export function useDraftBreach() {
         sendBreach,
         deleteBreach,
         deleteFineFromBreach,
-        fetchDraftBreach
+        fetchDraftBreach,
+        resetBreach,
     };
 }

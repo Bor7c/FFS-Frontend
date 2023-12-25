@@ -18,6 +18,7 @@ import AddFinePage from "./pages/AddFinePage/AddFinePage.tsx";
 
 
 
+
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );

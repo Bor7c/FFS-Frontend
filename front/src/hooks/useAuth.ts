@@ -11,12 +11,23 @@ export function useAuth() {
   const dispatch = useDispatch()
 
   const setUser = (value: any) => {
-    dispatch(updateUser(value))
-  }
+    // Сохраняем данные пользователя в localStorage
+    localStorage.setItem('user', JSON.stringify(value));
+    dispatch(updateUser(value));
+  };
 
   const resetUser = () => {
-    dispatch(cleanUser())
-  }
+    // Удаляем данные пользователя из localStorage
+    localStorage.removeItem('user');
+    dispatch(cleanUser());
+  };
+
+  const initializeUserFromStorage = () => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      dispatch(updateUser(JSON.parse(storedUser)));
+    }
+  };
 
   const logOut = async () => {
 
@@ -124,5 +135,6 @@ export function useAuth() {
     logOut,
     login,
     auth,
+    initializeUserFromStorage,
   };
 }

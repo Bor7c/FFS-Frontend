@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import "./FineCard.scss"
 import CustomButton from "../CustomButton/CustomButton";
 import {useDraftBreach} from "../../hooks/useDraftBreach";
-import {Fine} from "../Interfaces";
 import {useAuth} from "../../hooks/useAuth";
+import defaultImage from '../../assets/Default.png';
 
 
-const FineCard = ({fine}:{fine:Fine}) => {
+const FineCard = ({fine}:{fine: any}) => {
 
-  const {is_authenticated, is_moderator} = useAuth()
+  const { is_authenticated } = useAuth()
 
   const {addFineToBreach, deleteFineFromBreach} = useDraftBreach()
 
@@ -21,10 +21,13 @@ const FineCard = ({fine}:{fine:Fine}) => {
     await deleteFineFromBreach(fine.id)
   }
 
+  const backgroundImageUrl = fine.image || defaultImage;
+
+
   return (
     <div className="card">
         <div className="background-img-white">
-          <div className="background-img" style={{backgroundImage: `url(${fine.image})`}}>
+          <div className="background-img" style={{backgroundImage: `url(${backgroundImageUrl})`}}>
             <div className="background-img-black">
               <div className="box">
                 <div className="content">
