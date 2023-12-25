@@ -111,20 +111,27 @@ export const BreachesTable = () => {
 
 
       useEffect(() => {
-        // Function to fetch and set data at a regular interval
+        // Function to fetch and set data at a regular interval ONLY if the user is a moderator
         const fetchDataInterval = async () => {
-          await fetchBreachesData(filters, session_id, setBreachesData, setError, setLoadedOnce, setIsLoading);
+            await fetchBreachesData(filters, session_id, setBreachesData, setError, setLoadedOnce, setIsLoading);
         };
-      
-        // Call the function for initial data load
-        fetchDataInterval();
-      
-        // Set up the interval to fetch data every 3 seconds
-        const interval = setInterval(fetchDataInterval, 3000);
-      
-        // Clean up interval on component unmount
-        return () => clearInterval(interval);
-      }, [filters, session_id]); // Dependencies array: component will re-run effect if any of these values change
+    
+        let interval: any;
+        if (is_moderator) {
+            // Call the function for initial data load
+            fetchDataInterval();
+    
+            // Set up the interval to fetch data every 3 seconds, only for moderators
+            interval = setInterval(fetchDataInterval, 3000);
+        }else{
+            fetchBreachesData(filters, session_id, setBreachesData, setError, setLoadedOnce, setIsLoading);
+        }
+    
+        // Clean up interval on component unmount, or when `is_moderator` changes
+        return () => {
+            if (interval) clearInterval(interval);
+        };
+    }, [filters, session_id, is_moderator]); // Dependencies array: component will re-run effect if any of these values change
       
 
     useEffect(() => {
