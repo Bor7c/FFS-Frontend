@@ -10,55 +10,58 @@ const statuses: any = {
   removed: 2,
 };
 
+
 const FinePage = () => {
-    const {is_moderator} = useAuth()
+    const { is_moderator } = useAuth();
+  
+    if (is_moderator) {
+      return <ModeratorFinePage />;
+    } else {
+      return <RegularFinePage />;
+    }
+  };
+
+const RegularFinePage = () => {
     const { id } = useParams();
     const FineId = id ? parseInt(id, 10) : null;
-    if(!is_moderator){
-
-    
-        const {fine, fetchFine} = useFine()
-    
-        useEffect(() => {
-            if (FineId !== null) {
-                fetchFine(FineId)
-            }
-        }, [FineId]);
-    
-        if (!fine) {
-            return <div>Loading...</div>;
+    const {fine, fetchFine} = useFine()
+    useEffect(() => {
+        if (FineId !== null) {
+            fetchFine(FineId)
         }
+    }, [FineId]);
     
-        return (
-            <div className="container-2">
-                <span className='circle-image'>
-                    <img src={fine.image} alt=""/>
-                </span>
-    
-                <h1 className="short_text">{fine.title}</h1>
-    
-                <hr className="line" />
-    
-                <div className="container">
-                    <p className="info">
-                        {fine.text}
-                    </p>
-                </div>
-            </div>
-    
-        );
+    if (!fine) {
+        return <div>Loading...</div>;
     }
 
-    if(is_moderator){
-    
+    return (
+        <div className="container-2">
+            <span className='circle-image'>
+                <img src={fine.image} alt=""/>
+            </span>
+
+            <h1 className="short_text">{fine.title}</h1>
+
+            <hr className="line" />
+
+            <div className="container">
+                <p className="info">
+                    {fine.text}
+                </p>
+            </div>
+        </div>
+
+    );
+};
+
+
+  
+const ModeratorFinePage = () => {
+    const { id } = useParams();
+    const FineId = id ? parseInt(id, 10) : null;
     const { fine, fetchFine, sendFine } = useFine();
-    
-
     const [fileData, setFileData] = useState(null); // новое состояние для файла
-
-    const navigate = useNavigate();
-
-
     const [fineData, setFineData] = useState({
         title: '',
         image: null, // для файла изображения используем null в качестве начального значения
@@ -91,6 +94,16 @@ const FinePage = () => {
             });
         }
     }, [fine, isDataFetched]);
+
+    useEffect(() => {
+        // Загружаем данные только один раз
+        if (FineId !== null) {
+            fetchFine(FineId).then(() => {
+                setIsDataFetched(true);
+            });
+        }
+    }, []);
+
 
     
     
@@ -199,7 +212,7 @@ const FinePage = () => {
             </form>
         </div>
     );
-    }
 };
+  
 
 export default FinePage;
