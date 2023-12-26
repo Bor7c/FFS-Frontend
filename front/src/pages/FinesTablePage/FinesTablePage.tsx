@@ -11,6 +11,16 @@ import { useAuth } from '../../hooks/useAuth.js';
 
 import CustomButton from '../../components/CustomButton/CustomButton.js';
 
+const statuses = [
+    {
+        id: 1,
+        name: "Действует"
+    },
+    {
+        id: 2,
+        name: "Удалён"
+    },
+]
 
 const FinesTable = () => {
     
@@ -27,7 +37,7 @@ const FinesTable = () => {
 
     const searchFines = async () => {
         try {
-            const { data } = await axios(`http://127.0.0.1:8000/fines/search`, {
+            const { data } = await axios(`http://127.0.0.1:8000/fines`, {
                 method: "GET",
                 headers: {
                     'authorization': session_id
@@ -75,6 +85,20 @@ const FinesTable = () => {
                 // You can also add Cell property here to customize the rendering
             },
             {
+                Header: "Статус",
+                accessor: "status",
+                Cell: ({ value }) => { 
+                    const statusObject = statuses.find(status => status.id === value);
+                    return statusObject ? statusObject.name : 'Неизвестный статус';
+                }
+                // You can also add Cell property here to customize the rendering
+            },
+            {
+                Header: "Изображение",
+                accessor: "image",
+                Cell: ({ value }) => <img src={value} alt="Fine" style={{ width: "50px", height: "auto" }} />
+            },
+            {
                 Header: "Действия",
                 id: "actions",
                 // Cell property может быть функцией, которая принимает объект с данными ячейки
@@ -84,6 +108,7 @@ const FinesTable = () => {
                     </Link>
                 )
             },
+
 
             // Add other columns as needed
             
