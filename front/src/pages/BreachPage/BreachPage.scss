@@ -1,0 +1,66 @@
+.breach-page-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #424242;
+  border-radius: 10px;
+  padding: 20px;
+  gap: 50px;
+
+  .fines-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .top {
+      h3 {
+        font-size: 30px;
+		color: #808080;
+      }
+    }
+
+    .bottom {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 0.25fr));
+      grid-column-gap: 55px;
+      grid-row-gap: 25px;
+      justify-content: center;
+    }
+  }
+
+  .buttons-wrapper {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      color: #fff;
+      transition: 0.15s all ease;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 28px;
+
+      &:hover {
+        transform: rotate(-3deg);
+        opacity: 0.8; // combined hover for all buttons
+      }
+
+      &.order-button {
+        background: green;
+      }
+
+      &.delete-button {
+        background: #970000;
+      }
+    }
+  }
+}

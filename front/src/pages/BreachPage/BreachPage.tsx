@@ -1,4 +1,4 @@
-import "./BreachPage.sass"
+import "./BreachPage.scss"
 import {useNavigate} from "react-router-dom";
 import {useDraftBreach} from "../../hooks/useDraftBreach";
 import FineCard from "../../components/FineCard/FineCard";
@@ -47,26 +47,20 @@ const BreachPage = () => {
 
     return (
         <div className="breach-page-wrapper">
-
-            <div className="fines-wrapper">
-                <div className="top">
-                    <h3>Штрафы в нарушении</h3>
-                </div>
-
-                <div className="bottom">
-                    {cards}
-                </div>
+        <div className="fines-wrapper">
+            <div className="top">
+                <h3>Нарушение</h3>
             </div>
 
-            <div className="buttons-wrapper">
-
-                <button className="order-button" onClick={handleAdd}>Отправить</button>
-
-                <button className="delete-button" onClick={handleDelete}>Удалить</button>
-
+            <div className="bottom">
+                {cards}
             </div>
+        </div>
 
-
+        <div className="buttons-wrapper">
+            <button className="order-button" onClick={handleAdd}>Отправить</button>
+            <button className="delete-button" onClick={handleDelete}>Удалить</button>
+        </div>
         </div>
     )
 }

@@ -1,0 +1,41 @@
+.breadcrumbs-wrapper {
+	display: flex;
+	margin-bottom: 50px;
+
+	.breadcrumbs {
+		border-radius: 15px;
+		box-shadow: 0 4px 30px -10px rgba(0, 0, 0, 0.2);
+		width: fit-content;
+		background: #0000007a;
+		padding: 5px 10px;
+		display: flex;
+
+		.crumb {
+			display: flex;
+			align-items: center;
+
+			&:last-child:after {
+				display: none;
+			}
+
+			.home-icon {
+				color: #970000;
+				margin-right: 10px;
+				font-size: 20px;
+			}
+
+			.chevron-icon {
+				color: #970000;
+			}
+
+			a {
+				font-size: 20px;
+				text-decoration: none;
+				display: flex;
+				align-items: center;
+				color: #970000;
+				padding: 0 10px;
+			}
+		}
+	}
+}

@@ -12,7 +12,7 @@ const BreachBasket = () => {
 
     return (
         <Link
-            to={breach ? "/breaches/draft/" : "#"}
+            to={breach ? "/fines/draft/" : "#"}
             onClick={(e) => { if (breach == null) e.preventDefault(); }}
             className={`lesson-constructor-container ${breach == null ? 'disabled-link' : ''}`} 
         >

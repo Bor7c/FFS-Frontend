@@ -24,6 +24,8 @@ const FineEdit = () => {
     });
 
     const [isDataFetched, setIsDataFetched] = useState(false);
+    const [submitSuccess, setSubmitSuccess] = useState(false);
+
 
     useEffect(() => {
         // Загружаем данные только один раз
@@ -56,6 +58,24 @@ const FineEdit = () => {
             });
         }
     }, []);
+
+    useEffect(() => {
+        let timer: any;
+        if (submitSuccess) {
+            // Показать сообщение
+            const successMessage = document.querySelector('.submit-success-message');
+            if (successMessage) successMessage.classList.add('show');
+    
+            // Скрыть сообщение после 3 секунд
+            timer = setTimeout(() => {
+                if (successMessage) successMessage.classList.remove('show');
+                setSubmitSuccess(false); // Сбросить состояние, чтобы позволить повторное появление в будущем
+            }, 3000);
+        }
+    
+        // Очистка таймера, если компонент размонтируется до завершения таймаута
+        return () => timer && clearTimeout(timer);
+    }, [submitSuccess]); 
 
 
     
@@ -99,6 +119,7 @@ const FineEdit = () => {
     
         sendFine(FineId, formData).then(() => {
             // navigate("/fines");
+            setSubmitSuccess(true);
         });
     };
     
@@ -112,6 +133,7 @@ const FineEdit = () => {
     return (
         <div className="container-1">
             <h1>Редактировать Штраф</h1>
+            {submitSuccess && <div className="submit-success-message">Штраф отредактирован</div>}
             <form onSubmit={handleSubmit} className="fine-form" encType="multipart/form-data">
                 <label htmlFor="title">Заголовок</label>
                 <input
@@ -133,6 +155,7 @@ const FineEdit = () => {
 
                 <label htmlFor="status">Статус</label>
                 <select
+                    className="form select"
                     id="status"
                     name="status"
                     value={fineData.status}

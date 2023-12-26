@@ -1,0 +1,179 @@
+.table-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    background: #970000;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+        tr {
+            background: #B22222;
+
+            th {
+                padding: 20px;
+                user-select: none;
+                color: #fff;
+                font-size: 20px;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            transition: 0.2s ease;
+
+            &:hover {
+                background-color: #7e7e7e;
+            }
+
+            td {
+                padding: 10px;
+                text-align: center;
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 10px 0;
+}
+
+.pagination button {
+    color: #fff;
+    background: #970000;
+    border: 1px solid #444444;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.15s ease-in-out;
+}
+
+.pagination button:hover {
+    background: #640000;
+}
+
+.pagination button[disabled] {
+    background: #7d6c6c;
+    cursor: default;
+}
+
+.pagination span {
+    color: #fff;
+    font-size: 16px;
+}
+
+
+form input[type='datetime-local'],
+form select {
+    display: initial;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 20px;
+    margin: auto;
+    margin-top: 15px;
+    padding: 5px 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #495057;
+    margin-left: 10px;
+    margin-bottom: 10px;   
+}
+
+/* Updated styles for the date input */
+.date-input {
+    line-height: normal;
+    max-width: 200px; // Increased from 140px to 200px for more space
+}
+
+/* Updated styles for the status select */
+form .status-select {
+    background-color: #eff0f1;
+    max-width: 220px; /* Increase width of status select */
+	height: auto;
+    width: auto;
+}
+
+form select {
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    background-color: #fff;
+    background-clip: padding-box;
+}
+
+form select option:hover {
+    background-color: #e2e6ea;
+}
+
+.accept-button,
+.reject-button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.2s ease-in-out;
+    width: -webkit-fill-available;
+}
+
+.accept-button {
+    background-color: #28a745; // Green color for accept button
+}
+
+.accept-button:hover {
+    opacity: 0.8;
+}
+
+.reject-button {
+    background-color: #dc3545; // Red color for reject button
+}
+
+.reject-button:hover {
+    opacity: 0.8;
+}
+
+// Styles for the status selector and page size chooser
+.status-select,
+.page-size-select {
+    padding: 5px 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #495057;
+    /* Default browser appearance will be overridden */
+    -moz-appearance: none; 
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    background: url(path/to/your/dropdown-arrow-image) no-repeat right 10px center #eff0f1; // Add your dropdown arrow image path here
+    background-size: auto 50%; // Adjust the size of the background image as needed
+
+    &:hover {
+        background-color: #e2e6ea;
+    }
+}
+
+.page-size-select {
+    max-width: 100px; // Adjust the width of the page size select as desired
+    height: auto;
+}
+
+// Enhanced styles for the date input
+

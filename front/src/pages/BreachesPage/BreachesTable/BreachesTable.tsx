@@ -1,6 +1,6 @@
 import {TableInstance, useTable, usePagination} from "react-table"
 
-import "./BreachesTable.sass"
+import "./BreachesTable.scss"
 import axios from "axios";
 import {STATUSES} from "/src/utils/consts.ts";
 import {ru} from "/src/utils/momentLocalization";
@@ -97,8 +97,8 @@ export const BreachesTable = () => {
                 if (row.original.status === 2) {
                     return (
                         <div>
-                            <button onClick={() => handleAccept(row)}>Принять</button>
-                            <button onClick={() => handleReject(row)}>Отклонить</button>
+                            <button className="accept-button" onClick={() => handleAccept(row)}>Принять</button>
+                            <button className="reject-button" onClick={() => handleReject(row)}>Отклонить</button>
                         </div>
                     );
                 }
@@ -279,22 +279,25 @@ export const BreachesTable = () => {
 
             <form>
             <input
+                className="date-input"
                 type="datetime-local"
                 name="startDate"
                 value={filters.startDate}
                 onChange={handleDateChange}
             />
             <input
+                className="date-input"
                 type="datetime-local"
                 name="endDate"
                 value={filters.endDate}
                 onChange={handleDateChange}
             />
-               <select
-                  name="Status"
-                  value={filters.Status}
-                  onChange={handleStatusChange}
-              >
+            <select
+                className="status-select"
+                name="Status"
+                value={filters.Status}
+                onChange={handleStatusChange}
+            >
                   <option value="">Все</option>
                   {STATUSES.map((status: any) => (
                       <option key={status.id} value={status.id}>
@@ -360,6 +363,7 @@ export const BreachesTable = () => {
                     </strong>{' '}
                 </span>
                 <select
+                    className="status-select"
                     value={pageSize}
                     onChange={e => {
                         setPageSize(Number(e.target.value))

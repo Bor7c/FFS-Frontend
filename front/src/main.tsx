@@ -46,10 +46,10 @@ root.render(
                         <Route path="fines_edit/" element={<FinesTable/>}/>
                         <Route path="fines/:id" element={<FinePage/>}/>
                         <Route path="fines_edit/:id" element={<FineEdit/>}/>
-                        <Route path="add-fine" element={<AddFinePage/>}/>
+                        <Route path="fines_edit/add_new/" element={<AddFinePage/>}/>
 
                         <Route path="breaches/" element={<Breaches/>}/>
-                        <Route path="breaches/draft/" element={<BreachPage/>}/>
+                        <Route path="fines/draft/" element={<BreachPage/>}/>
 
                         <Route path="login/" element={<LoginPage/>}/>
                         <Route path="profile/" element={<ProfilePage/>}/>

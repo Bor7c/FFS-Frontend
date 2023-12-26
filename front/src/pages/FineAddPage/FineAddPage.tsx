@@ -18,6 +18,7 @@ const AddFinePage = () => {
     const [fileData, setFileData] = useState(null); // новое состояние для файла
 
     const navigate = useNavigate();
+    const [submitSuccess, setSubmitSuccess] = useState(false);
 
 
     const [fineData, setFineData] = useState({
@@ -31,8 +32,22 @@ const AddFinePage = () => {
 
 
     useEffect(() => {
-   
-    }, []);
+        let timer: any;
+        if (submitSuccess) {
+            // Показать сообщение
+            const successMessage = document.querySelector('.submit-success-message');
+            if (successMessage) successMessage.classList.add('show');
+    
+            // Скрыть сообщение после 3 секунд
+            timer = setTimeout(() => {
+                if (successMessage) successMessage.classList.remove('show');
+                setSubmitSuccess(false); // Сбросить состояние, чтобы позволить повторное появление в будущем
+            }, 3000);
+        }
+    
+        // Очистка таймера, если компонент размонтируется до завершения таймаута
+        return () => timer && clearTimeout(timer);
+    }, [submitSuccess]); 
 
     
     
@@ -61,6 +76,11 @@ const AddFinePage = () => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
+
+        if (isNaN(fineData.price)) {
+            alert("Цена должна быть числом");
+            return;
+        }
     
         const formData = new FormData();
     
@@ -74,7 +94,11 @@ const AddFinePage = () => {
         }
     
         createFine(formData).then(() => {
-            // navigate("/fines");
+            setSubmitSuccess(true); // Only navigate or handle success if creation was successful
+            // navigate("/fines"); // You could navigate to the fines page if required
+        }).catch((error) => {
+            // Handle error here, e.g., display a message to the user
+            console.error("Failed to create fine:", error);
         });
     };
     
@@ -88,6 +112,7 @@ const AddFinePage = () => {
     return (
         <div className="container-1">
             <h1>Добавить Штраф</h1>
+            {submitSuccess && <div className="submit-success-message">Штраф добавлен</div>}
             <form onSubmit={handleSubmit} className="fine-form" encType="multipart/form-data">
                 <label htmlFor="title">Заголовок</label>
                 <input
@@ -96,6 +121,7 @@ const AddFinePage = () => {
                     name="title"
                     value={fineData.title}
                     onChange={handleChange}
+                    required
                 />
 
                 <label htmlFor="price">Цена</label>
@@ -105,10 +131,12 @@ const AddFinePage = () => {
                     name="price"
                     value={fineData.price}
                     onChange={handleChange}
+                    required
                 />
 
                 <label htmlFor="status">Статус</label>
                 <select
+                    className='form select'
                     id="status"
                     name="status"
                     value={fineData.status}
@@ -135,6 +163,7 @@ const AddFinePage = () => {
                     name="text"
                     value={fineData.text}
                     onChange={handleChange}
+                    required
                 ></textarea>
 
                 <button type="submit">Добавить Штраф</button>

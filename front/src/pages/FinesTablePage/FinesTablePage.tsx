@@ -115,7 +115,7 @@ const FinesTable = () => {
                     searchFines(); }}
                 />
                 </div>
-                <Link to="/add-fine">
+                <Link to="/fines_edit/add_new">
                     <CustomButton text="Добавить штраф" />
                 </Link>
             </div>

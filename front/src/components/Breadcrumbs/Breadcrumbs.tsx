@@ -1,4 +1,4 @@
-import "./Breadcrumbs.sass"
+import "./Breadcrumbs.scss"
 import { Link, useLocation } from "react-router-dom";
 import {FaChevronRight} from "react-icons/fa6";
 import {FaHome} from "react-icons/fa";
@@ -24,7 +24,7 @@ const Breadcrumbs = () => {
         "breaches": "Нарушения",
         "login": "Вход",
         "profile": "Профиль",
-        "add-fine": "Добавить Штраф",
+        "add_new": "Добавить Штраф",
         "fines_edit": "Редактировать Штрафы"
     }
 

@@ -37,7 +37,7 @@ const FineCard = ({fine}:{fine: any}) => {
                       <Link to={`/fines/${fine.id}`}>
                         <CustomButton text="Подробнее"  />
                       </Link>
-                      {is_authenticated && location.pathname.includes("fines") && <CustomButton text="Добавить" onClick={handleAdd} /> }
+                      {is_authenticated && !location.pathname.includes("draft") && <CustomButton text="Добавить" onClick={handleAdd} /> }
                       {is_authenticated && location.pathname.includes("draft") && <CustomButton text="Удалить" onClick={handleDelete} /> }
                     </div>
                 </div>
