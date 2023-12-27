@@ -18,11 +18,11 @@ const fetchBreachesData = async (filters: any, session_id: any, setBreachesData:
     setIsLoading(true);
     setLoadedOnce(true);
     try {
-      const { startDate, endDate, Status } = filters;
+      const { startDate, endDate, Status, userName } = filters;
       const { data } = await axios("http://localhost:8000/breaches/", {
         method: "GET",
         headers: { authorization: session_id },
-        params: { start_date: startDate, end_date: endDate, status: Status },
+        params: { start_date: startDate, end_date: endDate, status: Status, user: userName, },
       });
       setBreachesData(data);
     } catch (e) {
@@ -52,7 +52,6 @@ const fetchBreachesData = async (filters: any, session_id: any, setBreachesData:
 
 
     },
-
     {
         Header: "Нарушитель",
         accessor: "name",
@@ -77,6 +76,7 @@ export const BreachesTable = () => {
       startDate: "",
       endDate: "",
       Status: "",
+      userName: "",
     });
     const [loadedOnce, setLoadedOnce] = useState(false);
 
@@ -90,6 +90,11 @@ export const BreachesTable = () => {
         const cols = [...staticColumns];
         if (is_moderator) {
           // Append actions column conditionally
+          cols.push({
+            Header: "Пользователь",
+            accessor: "user.username",
+          });
+
           cols.push({
             Header: "Действия",
             accessor: "actions",
@@ -105,6 +110,8 @@ export const BreachesTable = () => {
                 return null;
             },
           });
+
+
         }
         return cols;
       }, [is_moderator]); 
@@ -273,11 +280,19 @@ export const BreachesTable = () => {
     
     };
 
+    const handleInputChange = (event: any) => {
+    const { name, value } = event.target;
+    setFilters({
+        ...filters,
+        [name]: value
+    });
+};
+
 
     return (
         <div className="table-wrapper">
 
-            <form>
+            <form> 
             <input
                 className="date-input"
                 type="datetime-local"
@@ -292,6 +307,20 @@ export const BreachesTable = () => {
                 value={filters.endDate}
                 onChange={handleDateChange}
             />
+
+            {is_moderator && 
+                <input
+                    className="search-input"
+                    type="text"
+                    placeholder="Поиск по имени пользователя"
+                    name="userName"
+                    value={filters.userName}
+                    onChange={handleInputChange} // Обновите значение фильтра при изменении поля ввода
+                />
+            }
+
+
+
             <select
                 className="status-select"
                 name="Status"
