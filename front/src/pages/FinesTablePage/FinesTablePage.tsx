@@ -10,6 +10,9 @@ import { mockFines } from '../../assets/Mock.js';
 import { useAuth } from '../../hooks/useAuth.js';
 
 import CustomButton from '../../components/CustomButton/CustomButton.js';
+import { useFine } from '../../hooks/useFine.js';
+
+import defaultImage from '../../assets/Default.png';
 
 const statuses = [
     {
@@ -35,9 +38,11 @@ const FinesTable = () => {
 
     const {is_moderator} = useAuth()
 
+    const { sendFine } = useFine()
+
     const searchFines = async () => {
         try {
-            const { data } = await axios(`http://127.0.0.1:8000/fines`, {
+            const { data } = await axios(`http://127.0.0.1:8000/fines/search`, {
                 method: "GET",
                 headers: {
                     'authorization': session_id
@@ -67,7 +72,19 @@ const FinesTable = () => {
     };
     
 
-   
+    const formData = new FormData();
+    formData.append('status', "2");
+
+    const handleDelete = async (id: any) => {
+        try {
+            await sendFine(id, formData);
+            searchFines();
+        } catch (error) {
+            console.error("Произошла ошибка при удалении штрафа", error);
+        }
+    };
+
+    
 
     const data = useMemo(() => fines.fines, [fines.fines])
 
@@ -84,28 +101,31 @@ const FinesTable = () => {
                 accessor: "title"
                 // You can also add Cell property here to customize the rendering
             },
-            {
-                Header: "Статус",
-                accessor: "status",
-                Cell: ({ value }) => { 
-                    const statusObject = statuses.find(status => status.id === value);
-                    return statusObject ? statusObject.name : 'Неизвестный статус';
-                }
-                // You can also add Cell property here to customize the rendering
-            },
+            // {
+            //     Header: "Статус",
+            //     accessor: "status",
+            //     Cell: ({ value }) => { 
+            //         const statusObject = statuses.find(status => status.id === value);
+            //         return statusObject ? statusObject.name : 'Неизвестный статус';
+            //     }
+            //     // You can also add Cell property here to customize the rendering
+            // },
             {
                 Header: "Изображение",
                 accessor: "image",
-                Cell: ({ value }) => <img src={value} alt="Fine" style={{ width: "50px", height: "auto" }} />
+                Cell: ({ value }) => <img src={value || defaultImage} alt="Fine" style={{ width: "50px", height: "auto" }} />
             },
             {
                 Header: "Действия",
                 id: "actions",
                 // Cell property может быть функцией, которая принимает объект с данными ячейки
                 Cell: ({ row }) => (
+                    <div>
                     <Link to={`/fines_edit/${row.original.id}`}>
                         <CustomButton text="Редактировать"  />
                     </Link>
+                    <CustomButton onClick={() => handleDelete(row.original.id)} text="Удалить" />
+                    </div>
                 )
             },
 

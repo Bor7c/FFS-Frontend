@@ -1,22 +1,31 @@
 import "./BreachPage.scss"
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {useDraftBreach} from "../../hooks/useDraftBreach";
 import FineCard from "../../components/FineCard/FineCard";
 import {useAuth} from "../../hooks/useAuth";
 import {useEffect} from "react";
 
 const BreachPage = () => {
+    const { id } = useParams();
+    const BreachID = id ? parseInt(id, 10) : null;
+
     const navigate = useNavigate()
 
     const {is_authenticated} = useAuth()
 
-    const {breach, sendBreach, deleteBreach} = useDraftBreach()
+    const {breach, sendBreach, deleteBreach, fetchDraftBreach} = useDraftBreach()
+
+    // useEffect(() => {
+    //     if (!is_authenticated) {
+    //         navigate("/fines")
+    //     }
+    // }, [])
 
     useEffect(() => {
-        if (!is_authenticated) {
-            navigate("/fines")
+        if(BreachID !== null) {
+            fetchDraftBreach(BreachID);
         }
-    }, [])
+    }, [BreachID]);
 
     if (!is_authenticated){
         return
@@ -31,9 +40,9 @@ const BreachPage = () => {
         )
     }
 
-    const cards = breach.fines.map(fine  => (
-        <FineCard fine={fine} key={fine.id}/>
-    ))
+    const cards = breach.fines.map((fine) => (
+        <FineCard fine={fine} key={fine.id} onFineAction={() => fetchDraftBreach(BreachID)}/>
+      ));
 
     const handleAdd = async () => {
         await sendBreach()

@@ -13,9 +13,10 @@ import BreachBasket from '../../components/BreachBasket/BreachBasket.js';
 import FineCard from '../../components/FineCard/FineCard.js';
 
 const Fines = () => {
-    
-    const [fines, setFines] = useState({
-        breach_id: null,
+    type MyType = number | null;
+    const [breach_id, setBreachId] = useState<MyType>(null);
+
+    const [finesList, setFines] = useState({
         fines: [],
     });
 
@@ -26,22 +27,26 @@ const Fines = () => {
 
     const searchFines = async () => {
         try {
-            const { data } = await axios(`http://127.0.0.1:8000/fines/search`, {
+            const { data } = await axios(`http://127.0.0.1:8000/fines/search/`, {
                 method: "GET",
                 headers: {
                     'authorization': session_id
                 },
                 params: {
                     title: titleData
-                }
+                },
+                maxRedirects: 0
             });
-    
-            setFines(data);
+            console.log(data);
+            setBreachId(data.breach_id)
+            setFines({
+                fines: data.fines, // предполагая, что это массив штрафов
+            });
         } catch (error) {
             console.error("Не удалось загрузить данные с сервера.", error);
             const filteredFines = filterFines(mockFines, titleData);
+            setBreachId(null)
             setFines({
-                breach_id: null,
                 fines: filteredFines,
             });
         }
@@ -56,11 +61,8 @@ const Fines = () => {
     };
     
 
-
-
-
     useEffect(() => {
-        searchFines()
+        searchFines();
     }, [titleData])
 
     return (
@@ -75,13 +77,16 @@ const Fines = () => {
                 />
                 </div>
 
-            <BreachBasket />
+                
+            <div>{breach_id}</div>
+            <BreachBasket breach_id={breach_id}/>
+            
 
             </div>
 
             <div className="bottom-container">
-                {fines.fines.map((fine) => {
-                    return <FineCard fine={fine} key={fine.id}/>
+                {finesList.fines.map((fine) => {
+                    return <FineCard fine={fine} key={fine.id}  onFineAction={searchFines}/>
                 })}
             </div>
         </div>

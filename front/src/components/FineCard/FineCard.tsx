@@ -7,7 +7,7 @@ import {useAuth} from "../../hooks/useAuth";
 import defaultImage from '../../assets/Default.png';
 
 
-const FineCard = ({fine}:{fine: any}) => {
+const FineCard = ({fine, onFineAction}:{fine: any, onFineAction: (id?: number) => Promise<void>}) => {
 
   const { is_authenticated } = useAuth()
 
@@ -15,10 +15,17 @@ const FineCard = ({fine}:{fine: any}) => {
 
   const handleAdd = async () => {
     await addFineToBreach(fine.id)
+    if(onFineAction) {
+      onFineAction();
+    }
+
   }
 
   const handleDelete = async () => {
     await deleteFineFromBreach(fine.id)
+    if (onFineAction) {
+      onFineAction(fine.id); // `onFineAction` is called with `fine.id`
+    }
   }
 
   const backgroundImageUrl = fine.image || defaultImage;
@@ -37,8 +44,8 @@ const FineCard = ({fine}:{fine: any}) => {
                       <Link to={`/fines/${fine.id}`}>
                         <CustomButton text="Подробнее"  />
                       </Link>
-                      {is_authenticated && !location.pathname.includes("draft") && <CustomButton text="Добавить" onClick={handleAdd} /> }
-                      {is_authenticated && location.pathname.includes("draft") && <CustomButton text="Удалить" onClick={handleDelete} /> }
+                      {is_authenticated && location.pathname.includes("fines") && <CustomButton text="Добавить" onClick={handleAdd} /> }
+                      {is_authenticated && location.pathname.includes("breaches") && <CustomButton text="Удалить" onClick={handleDelete} /> }
                     </div>
                 </div>
               </div>
@@ -50,3 +57,5 @@ const FineCard = ({fine}:{fine: any}) => {
 }
 
 export default FineCard
+
+

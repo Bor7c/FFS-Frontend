@@ -13,7 +13,7 @@ export function useDraftBreach() {
 
     const dispatch = useDispatch()
 
-    const setBreach = (value) => {
+    const setBreach = (value: any) => {
         dispatch(updateBreach(value))
     }
 
@@ -21,9 +21,9 @@ export function useDraftBreach() {
         dispatch(updateBreach(null))
     }
 
-    const fetchDraftBreach = async () => {
+    const fetchDraftBreach = async (breach_id: any) => {
 
-        const response = await axios(`http://localhost:8000/breaches/draft/`, {
+        const response = await axios(`http://localhost:8000/breaches/${breach_id}/`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -37,7 +37,7 @@ export function useDraftBreach() {
         }
     }
 
-    const addFineToBreach = async (fine_id) => {
+    const addFineToBreach = async (fine_id: any) => {
         const response = await axios(`http://localhost:8000/fines/${fine_id}/add_to_breach/`, {
             method: "POST",
             headers: {
@@ -98,7 +98,7 @@ export function useDraftBreach() {
         }
     }
 
-    const deleteFineFromBreach = async (fine_id) => {
+    const deleteFineFromBreach = async (fine_id: any) => {
         const response = await axios(`http://localhost:8000/breaches/${breach.id}/delete_fine/${fine_id}/`, {
             method: "DELETE",
             headers: {
