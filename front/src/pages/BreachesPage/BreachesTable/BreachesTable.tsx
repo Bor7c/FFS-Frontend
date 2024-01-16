@@ -18,11 +18,11 @@ const fetchBreachesData = async (filters: any, session_id: any, setBreachesData:
     setIsLoading(true);
     setLoadedOnce(true);
     try {
-      const { startDate, endDate, Status, userName } = filters;
+      const { startDate, endDate, Status } = filters;
       const { data } = await axios("http://localhost:8000/breaches/", {
         method: "GET",
         headers: { authorization: session_id },
-        params: { start_date: startDate, end_date: endDate, status: Status, user: userName, },
+        params: { start_date: startDate, end_date: endDate, status: Status },
       });
       setBreachesData(data);
     } catch (e) {
@@ -30,6 +30,9 @@ const fetchBreachesData = async (filters: any, session_id: any, setBreachesData:
     }
     setIsLoading(false);
   };
+
+
+
 
   const staticColumns = [
     {
@@ -57,9 +60,21 @@ const fetchBreachesData = async (filters: any, session_id: any, setBreachesData:
         accessor: "name",
     },
     {
+        Header: "Дата создания",
+        accessor: "created_date",
+        Cell: ({ value }) => { return moment(value).locale(ru()).format("D MMMM HH:mm") }
+    },
+    {
         Header: "Дата формирования",
         accessor: "formated_date",
         Cell: ({ value }) => { return moment(value).locale(ru()).format("D MMMM HH:mm") }
+    },
+    {
+        Header: "Дата окончания",
+        accessor: "closed_date",
+        Cell: ({ value }) => {
+            return value ? moment(value).locale(ru()).format("D MMMM HH:mm") : '';
+        }
     }
 ]
 
@@ -79,6 +94,8 @@ export const BreachesTable = () => {
       userName: "",
     });
     const [loadedOnce, setLoadedOnce] = useState(false);
+
+
 
 // ...в функции fetchBreachesData добавить setLoadedOnce(true); после успешного получения данных.
 
@@ -150,8 +167,6 @@ export const BreachesTable = () => {
     }, []);
 
 
-
-    
     const handleAccept = async (row: any) => {
         try {
             const response = await axios(`http://localhost:8000/breaches/${row.original.id}/update_status_admin/`, {
@@ -201,10 +216,25 @@ export const BreachesTable = () => {
 
     }
 
+    const getFilteredData = useCallback(() => {
+        if (filters.userName !== "") {
+            return breachesData.filter((item) => {
+                // Предполагая, что у item есть вложенный объект user и свойство username. 
+                // Если это не так, нужно будет адаптировать эту логику к вашей структуре данных.
+                return item.user.username.toLowerCase().includes(filters.userName.toLowerCase());
+            });
+        }
+        return breachesData;
+    }, [breachesData, filters.userName]);
+
+    const filteredBreachesData = useMemo(() => {
+        return getFilteredData();
+    }, [getFilteredData]);
+
     const tableInstance = useTable(
         {
             columns: COLUMNS,
-            data: breachesData, // Use the fetched data here
+            data: filteredBreachesData, // используйте отфильтрованные данные здесь
             initialState: { 
               pageIndex: parseInt(savedPage), 
               pageSize: parseInt(savedPageSize) 
@@ -295,16 +325,16 @@ export const BreachesTable = () => {
             <form> 
             <input
                 className="date-input"
-                type="datetime-local"
+                type="date" // измените на 'date'
                 name="startDate"
-                value={filters.startDate}
+                value={filters.startDate.substr(0, 10)} // обрезать время, если оно есть
                 onChange={handleDateChange}
             />
             <input
                 className="date-input"
-                type="datetime-local"
+                type="date" // измените на 'date'
                 name="endDate"
-                value={filters.endDate}
+                value={filters.endDate.substr(0, 10)} // обрезать время, если оно есть
                 onChange={handleDateChange}
             />
 

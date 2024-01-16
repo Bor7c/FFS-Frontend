@@ -1,8 +1,8 @@
 export const STATUSES = [
-    {
-        id: 1,
-        name: "Черновик"
-    },
+    // {
+    //     id: 1,
+    //     name: "Черновик"
+    // },
     {
         id: 2,
         name: "В работе"
@@ -15,8 +15,8 @@ export const STATUSES = [
         id: 4,
         name: "Отменен"
     },
-    {
-        id: 5,
-        name: "Удален"
-    }
+    // {
+    //     id: 5,
+    //     name: "Удален"
+    // }
 ]
