@@ -5,12 +5,15 @@ import axios from "axios";
 import {STATUSES} from "/src/utils/consts.ts";
 import {ru} from "/src/utils/momentLocalization";
 import moment from "moment";
-import {useQuery} from "react-query";
+
 import {useSsid} from "../../../hooks/useSsid";
 
 
 import React, { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import { useAuth } from "../../../hooks/useAuth";
+
+import { useFilters } from "../../../hooks/UseFilters";
+
 
 
 const fetchBreachesData = async (filters: any, session_id: any, setBreachesData: any, setError: any, setLoadedOnce: any, setIsLoading: any) => {
@@ -18,11 +21,11 @@ const fetchBreachesData = async (filters: any, session_id: any, setBreachesData:
     setIsLoading(true);
     setLoadedOnce(true);
     try {
-      const { startDate, endDate, Status } = filters;
+      const { startDate, endDate, status } = filters;
       const { data } = await axios("http://localhost:8000/breaches/", {
         method: "GET",
         headers: { authorization: session_id },
-        params: { start_date: startDate, end_date: endDate, status: Status },
+        params: { start_date: startDate, end_date: endDate, status: status },
       });
       setBreachesData(data);
     } catch (e) {
@@ -87,12 +90,9 @@ export const BreachesTable = () => {
     const [breachesData, setBreachesData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [filters, setFilters] = useState({
-      startDate: "",
-      endDate: "",
-      Status: "",
-      userName: "",
-    });
+
+    const { filters, updateFilters } = useFilters();
+    
     const [loadedOnce, setLoadedOnce] = useState(false);
 
 
@@ -293,29 +293,29 @@ export const BreachesTable = () => {
             formattedValue = moment(value).format("YYYY-MM-DDTHH:mm"); // Обратите внимание на изменение формата
         }
     
-        setFilters({
+        updateFilters({
             ...filters,
             [name]: formattedValue
-        });
+          });
     
     };
 
     const handleStatusChange = (event: any) => {
         const { name, value } = event.target;
  
-        setFilters({
+        updateFilters({
             ...filters,
             [name]: value
-        });
+          });
     
     };
 
     const handleInputChange = (event: any) => {
     const { name, value } = event.target;
-    setFilters({
+    updateFilters({
         ...filters,
         [name]: value
-    });
+      });
 };
 
 
@@ -353,8 +353,8 @@ export const BreachesTable = () => {
 
             <select
                 className="status-select"
-                name="Status"
-                value={filters.Status}
+                name="status"
+                value={filters.status}
                 onChange={handleStatusChange}
             >
                   <option value="">Все</option>

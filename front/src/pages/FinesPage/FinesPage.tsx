@@ -7,6 +7,7 @@ import axios from "axios";
 import {useSsid} from "../../hooks/useSsid.js";
 import { mockFines } from '../../assets/Mock.js';
 
+import { useFilters } from "../../hooks/UseFilters"
 
 
 import BreachBasket from '../../components/BreachBasket/BreachBasket.js';
@@ -20,9 +21,10 @@ const Fines = () => {
         fines: [],
     });
 
-    const [titleData, setTitlePage] = useState<string>("");
 
     const { session_id } = useSsid()
+
+    const { filters, updateTitle } = useFilters();
 
 
     const searchFines = async () => {
@@ -33,7 +35,7 @@ const Fines = () => {
                     'authorization': session_id
                 },
                 params: {
-                    title: titleData
+                    title: filters.title
                 },
                 maxRedirects: 0
             });
@@ -44,7 +46,7 @@ const Fines = () => {
             });
         } catch (error) {
             console.error("Не удалось загрузить данные с сервера.", error);
-            const filteredFines = filterFines(mockFines, titleData);
+            const filteredFines = filterFines(mockFines, filters.title);
             setBreachId(null)
             setFines({
                 fines: filteredFines,
@@ -63,7 +65,7 @@ const Fines = () => {
 
     useEffect(() => {
         searchFines();
-    }, [titleData])
+    }, [filters.title])
 
     return (
         <>
@@ -71,9 +73,12 @@ const Fines = () => {
             <div className="top-container">
 
                 <div className='search_in_menu'>
-                <SearchFines title={titleData} setTitle={(newTitle) => {
-                    setTitlePage(newTitle);
-                    searchFines(); }}
+                <SearchFines 
+                 title={filters.title}
+                 setTitle={(newTitle) => {
+                   updateTitle(newTitle);
+                   searchFines();
+                 }}
                 />
                 </div>
 
