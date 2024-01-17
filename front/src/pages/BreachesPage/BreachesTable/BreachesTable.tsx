@@ -7,6 +7,8 @@ import {ru} from "/src/utils/momentLocalization";
 import moment from "moment";
 
 import {useSsid} from "../../../hooks/useSsid";
+import { useNavigate } from 'react-router-dom';
+
 
 
 import React, { useState, useMemo, useEffect, useRef, useCallback } from "react";
@@ -94,6 +96,9 @@ export const BreachesTable = () => {
     const { filters, updateFilters } = useFilters();
     
     const [loadedOnce, setLoadedOnce] = useState(false);
+
+    const navigate = useNavigate();
+
 
 
 
@@ -388,13 +393,16 @@ export const BreachesTable = () => {
                     page.map((row, i) => {
                         prepareRow(row)
                         return (
-                            <tr {...row.getRowProps()}>
+                            <tr {...row.getRowProps({
+                                onClick: () => navigate(`/breaches/${row.original.id}`),
+                                style: { cursor: 'pointer' } // Опционально, чтобы курсор был в виде руки, показывая, что строка кликабельна.
+                            })}>
                                 {row.cells.map(cell => {
                                     return (
                                         <td {...cell.getCellProps()}>
-                                            {cell.column.id === 'id' ? i + 1 : cell.render('Cell')}
+                                            {cell.column.id === 'id' ? i + 1 + pageIndex * pageSize : cell.render('Cell')}
                                         </td>
-                                    )
+                                    );
                                 })}
                             </tr>
                         )

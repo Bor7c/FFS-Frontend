@@ -11,7 +11,7 @@ const FineCard = ({fine, onFineAction}:{fine: any, onFineAction: (id?: number) =
 
   const { is_authenticated } = useAuth()
 
-  const {addFineToBreach, deleteFineFromBreach} = useDraftBreach()
+  const {breach, addFineToBreach, deleteFineFromBreach} = useDraftBreach()
 
   const handleAdd = async () => {
     await addFineToBreach(fine.id)
@@ -45,7 +45,7 @@ const FineCard = ({fine, onFineAction}:{fine: any, onFineAction: (id?: number) =
                         <CustomButton text="Подробнее"  />
                       </Link>
                       {is_authenticated && location.pathname.includes("fines") && <CustomButton text="Добавить" onClick={handleAdd} /> }
-                      {is_authenticated && location.pathname.includes("breaches") && <CustomButton text="Удалить" onClick={handleDelete} /> }
+                      {breach && breach.status === 1 && is_authenticated && location.pathname.includes("breaches") && <CustomButton text="Удалить" onClick={handleDelete} /> }
                     </div>
                 </div>
               </div>

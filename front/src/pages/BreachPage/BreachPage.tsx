@@ -5,6 +5,7 @@ import FineCard from "../../components/FineCard/FineCard";
 import {useAuth} from "../../hooks/useAuth";
 import {useEffect} from "react";
 
+
 const BreachPage = () => {
     const { id } = useParams();
     const BreachID = id ? parseInt(id, 10) : null;
@@ -58,7 +59,7 @@ const BreachPage = () => {
         <div className="breach-page-wrapper">
         <div className="fines-wrapper">
             <div className="top">
-                <h3>Нарушение</h3>
+                <h3>Нарушение {breach && breach.name}</h3>
             </div>
 
             <div className="bottom">
@@ -66,10 +67,13 @@ const BreachPage = () => {
             </div>
         </div>
 
-        <div className="buttons-wrapper">
-            <button className="order-button" onClick={handleAdd}>Отправить</button>
-            <button className="delete-button" onClick={handleDelete}>Удалить</button>
-        </div>
+        {breach && breach.status === 1 && (
+            <div className="buttons-wrapper">
+                <button className="order-button" onClick={handleAdd}>Отправить</button>
+                <button className="delete-button" onClick={handleDelete}>Удалить</button>
+            </div>
+        )}
+
         </div>
     )
 }
