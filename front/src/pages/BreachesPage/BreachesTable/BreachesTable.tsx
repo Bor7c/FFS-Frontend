@@ -124,8 +124,18 @@ export const BreachesTable = () => {
                 if (row.original.status === 2) {
                     return (
                         <div>
-                            <button className="accept-button" onClick={() => handleAccept(row)}>Принять</button>
-                            <button className="reject-button" onClick={() => handleReject(row)}>Отклонить</button>
+                            <button
+                                className="accept-button"
+                                onClick={(e) => handleAccept(row, e)} // Передайте событие клика
+                            >
+                                Принять
+                            </button>
+                            <button
+                                className="reject-button"
+                                onClick={(e) => handleReject(row, e)} // Передайте событие клика
+                            >
+                                Отклонить
+                            </button>
                         </div>
                     );
                 }
@@ -172,7 +182,8 @@ export const BreachesTable = () => {
     }, []);
 
 
-    const handleAccept = async (row: any) => {
+    const handleAccept = async (row: any, e: any) => {
+        e.stopPropagation();
         try {
             const response = await axios(`http://localhost:8000/breaches/${row.original.id}/update_status_admin/`, {
                 method: "PUT",
@@ -196,7 +207,8 @@ export const BreachesTable = () => {
         }
     }
 
-    const handleReject = async (row: any) => {
+    const handleReject = async (row: any, e: any) => {
+        e.stopPropagation();
         try {
             const response = await axios(`http://localhost:8000/breaches/${row.original.id}/update_status_admin/`, {
                 method: "PUT",

@@ -13,6 +13,7 @@ import CustomButton from '../../components/CustomButton/CustomButton.js';
 import { useFine } from '../../hooks/useFine.js';
 
 import defaultImage from '../../assets/Default.png';
+import { useFilters } from '../../hooks/UseFilters.js';
 
 const statuses = [
     {
@@ -32,7 +33,7 @@ const FinesTable = () => {
         fines: [],
     });
 
-    const [titleData, setTitlePage] = useState<string>("");
+    const { filters, updateTitle } = useFilters();
 
     const { session_id } = useSsid()
 
@@ -42,20 +43,20 @@ const FinesTable = () => {
 
     const searchFines = async () => {
         try {
-            const { data } = await axios(`http://127.0.0.1:8000/fines/search`, {
+            const { data } = await axios(`http://127.0.0.1:8000/fines/search/`, {
                 method: "GET",
                 headers: {
                     'authorization': session_id
                 },
                 params: {
-                    title: titleData
+                    title: filters.title
                 }
             });
     
             setFines(data);
         } catch (error) {
             console.error("Не удалось загрузить данные с сервера.", error);
-            const filteredFines = filterFines(mockFines, titleData);
+            const filteredFines = filterFines(mockFines, filters.title);
             setFines({
                 breach_id: null,
                 fines: filteredFines,
@@ -147,7 +148,7 @@ const FinesTable = () => {
 
     useEffect(() => {
         searchFines()
-    }, [titleData])
+    }, [filters.title])
 
     return (
         <>
@@ -155,8 +156,8 @@ const FinesTable = () => {
         <div className="fines-wrapper">
             <div className="top-container">
                 <div className='search_in_menu'>
-                <SearchFines title={titleData} setTitle={(newTitle) => {
-                    setTitlePage(newTitle);
+                <SearchFines title={filters.title} setTitle={(newTitle) => {
+                    updateTitle(newTitle);
                     searchFines(); }}
                 />
                 </div>
