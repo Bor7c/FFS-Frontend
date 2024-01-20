@@ -59,7 +59,7 @@ const BreachPage = () => {
         <div className="breach-page-wrapper">
         <div className="fines-wrapper">
             <div className="top">
-                <h3>Нарушение {breach && breach.name}</h3>
+                <h3>Нарушение {breach && breach.status !== 1 && (<h3>Нарушитель: {breach.name}</h3>)}</h3>
             </div>
 
             <div className="bottom">

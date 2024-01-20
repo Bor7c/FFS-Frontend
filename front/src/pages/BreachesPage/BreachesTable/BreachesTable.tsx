@@ -56,7 +56,10 @@ const fetchBreachesData = async (filters: any, session_id: any, setBreachesData:
     {
         Header: "Штрафы",
         accessor: "fines",
-        Cell: ({ value }) => value?.map(fine => fine.title).join(', ') ?? ''
+        Cell: ({ value }) => 
+        <div className="actions-cell">
+            {value?.map((fine) => fine.title).join(", ") ?? ""}
+        </div>
 
 
     },
@@ -340,20 +343,42 @@ export const BreachesTable = () => {
         <div className="table-wrapper">
 
             <form> 
-            <input
-                className="date-input"
+
+            <div className="date-wrapper">
+                {/* <label className="date-label">От:</label> */}
+                <input
+                    className="date-input"
+                    type="date" // измените на 'date'
+                    name="startDate"
+                    value={filters.startDate.substr(0, 10)} // обрезать время, если оно есть
+                    onChange={handleDateChange}
+                />
+            </div>
+            <div className="date-wrapper">
+                {/* <label className="date-label">До:</label> */}
+                <input
+                    className="date-input"
+                    type="date" // измените на 'date'
+                    name="endDate"
+                    value={filters.endDate.substr(0, 10)} // обрезать время, если оно есть
+                    onChange={handleDateChange}
+                />
+            </div>
+
+            {/* <input
+                className="date-wrapper"
                 type="date" // измените на 'date'
                 name="startDate"
                 value={filters.startDate.substr(0, 10)} // обрезать время, если оно есть
                 onChange={handleDateChange}
             />
             <input
-                className="date-input"
+                className="date-wrapper"
                 type="date" // измените на 'date'
                 name="endDate"
                 value={filters.endDate.substr(0, 10)} // обрезать время, если оно есть
                 onChange={handleDateChange}
-            />
+            /> */}
 
             {is_moderator && 
                 <input

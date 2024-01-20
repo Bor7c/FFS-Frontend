@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
-    background: #970000;
+    background: #ccc; /* Change the background color to gray */
     border-radius: 10px;
     overflow: hidden;
 }
@@ -14,7 +14,7 @@
 
     thead {
         tr {
-            background: #B22222;
+            background: #888; /* Change the background color to gray */
 
             th {
                 padding: 20px;
@@ -30,7 +30,7 @@
             transition: 0.2s ease;
 
             &:hover {
-                background-color: #7e7e7e;
+                background-color: #ddd; /* Change the background color on hover to light gray */
             }
 
             td {
@@ -40,6 +40,35 @@
             }
         }
     }
+}
+
+.date-wrapper {
+    display: flex;
+    justify-content: flex-start; /* Align the date labels to the left */
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.date-label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff; /* Change the text color to white */
+}
+
+.date-input {
+    padding: 5px 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #495057;
+    margin: 0 10px;
+}
+
+form .status-select {
+    background-color: #eff0f1;
+    max-width: 220px;
+    height: auto;
+    width: auto;
 }
 
 .pagination {
@@ -53,7 +82,7 @@
 
 .pagination button {
     color: #fff;
-    background: #970000;
+    background: #888;
     border: 1px solid #444444;
     padding: 5px 10px;
     border-radius: 5px;
@@ -63,11 +92,11 @@
 }
 
 .pagination button:hover {
-    background: #640000;
+    background: #bbb; /* Change the hover background color to a lighter gray */
 }
 
 .pagination button[disabled] {
-    background: #7d6c6c;
+    background: #ccc; /* Change the disabled background color to a darker gray */
     cursor: default;
 }
 
@@ -76,8 +105,17 @@
     font-size: 16px;
 }
 
+.search-input {
+    padding: 5px 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #495057;
+    margin: 0 10px;
+    width: 245px; /* Adjust the width as needed */
+}
 
-form input[type='datetime-local'],
+
 form select {
     display: initial;
     align-items: center;
@@ -94,11 +132,6 @@ form select {
     margin-bottom: 10px;   
 }
 
-/* Updated styles for the date input */
-.date-input {
-    line-height: normal;
-    max-width: 200px; // Increased from 140px to 200px for more space
-}
 
 /* Updated styles for the status select */
 form .status-select {
@@ -176,4 +209,9 @@ form select option:hover {
 }
 
 // Enhanced styles for the date input
-
+.actions-cell {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 400px; /* Задайте максимальную ширину ячейки по вашим требованиям */
+  }
