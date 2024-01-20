@@ -45,7 +45,7 @@ section .signin .content
 section .signin .content h2 
 {
   font-size: 2em;
-  color: #970000;
+  color: #ced4da;
   text-transform: uppercase;
 }
 section .signin .content .form 
@@ -60,7 +60,7 @@ section .signin .content .form
 
 .EntButton {
     appearance: none;
-    background-color: #970000;
+    background-color: #ced4da;
     border: 1px solid rgba(27, 31, 35, .15);
     border-radius: 6px;
     box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
