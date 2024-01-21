@@ -2,13 +2,14 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import "./FinePage.scss"
 import { useFine } from "../../hooks/useFine";
+import { mockFines } from '../../assets/Mock';
 
 
 
 const FinePage = () => {
     const { id } = useParams();
-    const FineId = id ? parseInt(id, 10) : null;
-    const {fine, fetchFine} = useFine()
+    const FineId = id ? parseInt(id, 10) : 0;
+    const {fine, fetchFine,setFine} = useFine()
     useEffect(() => {
         if (FineId !== null) {
             fetchFine(FineId)
@@ -16,7 +17,12 @@ const FinePage = () => {
     }, [FineId]);
     
     if (!fine) {
-        return <div>Loading...</div>;
+        const mockFine = mockFines.find(fine => fine.id === FineId);
+        if (mockFine) {
+            setFine(mockFine);
+        } else {
+            return <div>Fine not found</div>;
+        }
     }
 
     return (

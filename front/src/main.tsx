@@ -28,7 +28,7 @@ root.render(
 
         <Provider store={store}>
 
-            <BrowserRouter>
+            <BrowserRouter basename="/FFS-Frontend/">
 
                 <Navbar />
 
