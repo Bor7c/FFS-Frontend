@@ -16,6 +16,7 @@ import Breadcrumbs from "./components/Breadcrumbs/Breadcrumbs";
 import AddFinePage from "./pages/FineAddPage/FineAddPage.tsx";
 import FinesTable from "./pages/FinesTablePage/FinesTablePage.tsx";
 import FineEdit from "./pages/FineEditPage/FineEditPage.tsx";
+import RegPage from "./pages/RegPage/RegPage.tsx";
 
 
 
@@ -51,6 +52,7 @@ root.render(
                         <Route path="breaches/" element={<Breaches/>}/>
                         <Route path="breaches/:id/" element={<BreachPage/>}/>
 
+                        <Route path="registration/" element={<RegPage/>}/>
                         <Route path="login/" element={<LoginPage/>}/>
                         <Route path="profile/" element={<ProfilePage/>}/>
                     </Routes>

@@ -87,6 +87,41 @@ export function useAuth() {
 
   }
 
+  const register = async (formData: any) => {
+
+    const response = await axios(`http://127.0.0.1:8000/accounts/register/`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      },
+      data: formData as FormData
+    })
+
+    if (response.status == 201) {
+
+      console.log(response.data)
+      console.log(response.data['session_id'])
+
+      setSsid(response.data['session_id'])
+
+      const data = {
+        is_authenticated: true,
+        is_moderator: response.data["is_moderator"],
+        user_id: response.data["user_id"],
+        user_name: response.data["username"],
+      }
+    
+      console.log(`Добро пожаловать, ${response.data["username"]}!`)
+
+      setUser(data)
+
+      return true
+    }
+
+    return false
+
+  }
+
 
   const auth = async () => {
 
@@ -136,5 +171,6 @@ export function useAuth() {
     login,
     auth,
     initializeUserFromStorage,
+    register,
   };
 }

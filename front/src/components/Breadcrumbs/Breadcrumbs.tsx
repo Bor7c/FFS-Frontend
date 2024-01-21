@@ -25,7 +25,8 @@ const Breadcrumbs = () => {
         "login": "Вход",
         "profile": "Профиль",
         "add_new": "Добавить Штраф",
-        "fines_edit": "Редактировать Штрафы"
+        "fines_edit": "Редактировать Штрафы",
+        "registration": "Регистрация"
     }
 
 
