@@ -340,75 +340,71 @@ export const BreachesTable = () => {
 
 
     return (
-        <div className="table-wrapper">
-
-            <form> 
-
-            <div className="date-wrapper">
-                {/* <label className="date-label">От:</label> */}
-                <input
-                    className="date-input"
-                    type="date" // измените на 'date'
-                    name="startDate"
-                    value={filters.startDate.substr(0, 10)} // обрезать время, если оно есть
-                    onChange={handleDateChange}
-                />
-            </div>
-            <div className="date-wrapper">
-                {/* <label className="date-label">До:</label> */}
-                <input
-                    className="date-input"
-                    type="date" // измените на 'date'
-                    name="endDate"
-                    value={filters.endDate.substr(0, 10)} // обрезать время, если оно есть
-                    onChange={handleDateChange}
-                />
-            </div>
-
-            {/* <input
-                className="date-wrapper"
+        <>
+        <form> 
+        <div className="date-wrapper">
+            {/* <label className="date-label">От:</label> */}
+            <input
+                className="date-input"
                 type="date" // измените на 'date'
                 name="startDate"
                 value={filters.startDate.substr(0, 10)} // обрезать время, если оно есть
                 onChange={handleDateChange}
             />
+        </div>
+        <div className="date-wrapper">
+            {/* <label className="date-label">До:</label> */}
             <input
-                className="date-wrapper"
+                className="date-input"
                 type="date" // измените на 'date'
                 name="endDate"
                 value={filters.endDate.substr(0, 10)} // обрезать время, если оно есть
                 onChange={handleDateChange}
-            /> */}
+            />
+        </div>
 
-            {is_moderator && 
-                <input
-                    className="search-input"
-                    type="text"
-                    placeholder="Поиск по имени пользователя"
-                    name="userName"
-                    value={filters.userName}
-                    onChange={handleInputChange} // Обновите значение фильтра при изменении поля ввода
-                />
-            }
+        {/* <input
+            className="date-wrapper"
+            type="date" // измените на 'date'
+            name="startDate"
+            value={filters.startDate.substr(0, 10)} // обрезать время, если оно есть
+            onChange={handleDateChange}
+        />
+        <input
+            className="date-wrapper"
+            type="date" // измените на 'date'
+            name="endDate"
+            value={filters.endDate.substr(0, 10)} // обрезать время, если оно есть
+            onChange={handleDateChange}
+        /> */}
 
+        {is_moderator && 
+            <input
+                className="search-input"
+                type="text"
+                placeholder="Поиск по имени пользователя"
+                name="userName"
+                value={filters.userName}
+                onChange={handleInputChange} // Обновите значение фильтра при изменении поля ввода
+            />
+        }
 
-
-            <select
-                className="status-select"
-                name="status"
-                value={filters.status}
-                onChange={handleStatusChange}
-            >
-                  <option value="">Все</option>
-                  {STATUSES.map((status: any) => (
-                      <option key={status.id} value={status.id}>
-                          {status.name}
-                      </option>
-                  ))}
-              </select>
-            </form>
-
-
+        <select
+            className="status-select"
+            name="status"
+            value={filters.status}
+            onChange={handleStatusChange}
+        >
+              <option value="">Все</option>
+              {STATUSES.map((status: any) => (
+                  <option key={status.id} value={status.id}>
+                      {status.name}
+                  </option>
+              ))}
+          </select>
+        </form>
+        
+        <div className="table-wrapper">
 
 
             <table {...getTableProps()} className="orders-table">
@@ -481,6 +477,7 @@ export const BreachesTable = () => {
                 </select>
             </div>
         </div>
+        </>
         
     )
 }

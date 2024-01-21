@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import "./FinePage.scss"
 import { useFine } from "../../hooks/useFine";
+import defaultImage from "../../assets/Default.png"
 
 
 
@@ -19,10 +20,12 @@ const FinePage = () => {
         return <div>Loading...</div>;
     }
 
+    const backgroundImageUrl = fine.image || defaultImage;
+
     return (
         <div className="container-2">
             <span className='circle-image'>
-                <img src={fine.image} alt=""/>
+                <img src={backgroundImageUrl} alt=""/>
             </span>
 
             <h1 className="short_text">{fine.title}</h1>

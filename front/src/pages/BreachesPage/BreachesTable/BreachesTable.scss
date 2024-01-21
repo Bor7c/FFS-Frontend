@@ -14,7 +14,7 @@
 
     thead {
         tr {
-            background: #888; /* Change the background color to gray */
+            background: #970000; /* Change the background color to gray */
 
             th {
                 padding: 20px;
@@ -43,10 +43,11 @@
 }
 
 .date-wrapper {
-    display: flex;
+    display: contents;
     justify-content: flex-start; /* Align the date labels to the left */
     align-items: center;
     margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .date-label {
@@ -167,7 +168,7 @@ form select option:hover {
 }
 
 .accept-button {
-    background-color: #28a745; // Green color for accept button
+    background-color: #006e1a; // Green color for accept button
 }
 
 .accept-button:hover {
@@ -175,7 +176,7 @@ form select option:hover {
 }
 
 .reject-button {
-    background-color: #dc3545; // Red color for reject button
+    background-color: #970000; // Red color for reject button
 }
 
 .reject-button:hover {
