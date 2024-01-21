@@ -10,12 +10,12 @@ import { mockFines } from '../../assets/Mock.js';
 import { useFilters } from "../../hooks/UseFilters"
 
 
-import BreachBasket from '../../components/BreachBasket/BreachBasket.js';
+// import BreachBasket from '../../components/BreachBasket/BreachBasket.js';
 import FineCard from '../../components/FineCard/FineCard.js';
 
 const Fines = () => {
-    type MyType = number | null;
-    const [breach_id, setBreachId] = useState<MyType>(null);
+    // type MyType = number | null;
+    // const [breach_id, setBreachId] = useState<MyType>(null);
 
     const [finesList, setFines] = useState({
         fines: [],
@@ -40,14 +40,14 @@ const Fines = () => {
                 maxRedirects: 0
             });
             console.log(data);
-            setBreachId(data.breach_id)
+            // setBreachId(data.breach_id)
             setFines({
                 fines: data.fines, // предполагая, что это массив штрафов
             });
         } catch (error) {
             console.error("Не удалось загрузить данные с сервера.", error);
             const filteredFines = filterFines(mockFines, filters.title);
-            setBreachId(null)
+            // setBreachId(null)
             setFines({
                 fines: filteredFines,
             });
@@ -83,8 +83,8 @@ const Fines = () => {
                 </div>
 
                 
-            <div>{breach_id}</div>
-            <BreachBasket breach_id={breach_id}/>
+            {/* <div>{breach_id}</div>
+            <BreachBasket breach_id={breach_id}/> */}
             
 
             </div>
