@@ -9,7 +9,7 @@ export function useDraftBreach() {
 
     const { session_id } = useSsid()
 
-    const breach = useSelector(state => state.draftBreach.breach);
+    const breach = useSelector((state: any) => state.draftBreach.breach);
 
     const dispatch = useDispatch()
 

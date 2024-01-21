@@ -3,11 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://bor7c.github.io/FFS-Frontend/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm run build && gh-pages -d src"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
@@ -34,6 +36,7 @@
     "eslint": "8.22.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "gh-pages": "^6.1.1",
     "less": "^4.2.0",
     "sass": "^1.69.5",
     "typescript": "^5.0.2",

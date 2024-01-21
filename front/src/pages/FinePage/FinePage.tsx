@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import "./FinePage.scss"
 import { useFine } from "../../hooks/useFine";

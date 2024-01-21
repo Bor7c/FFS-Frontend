@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import "./FineCard.scss"
 import CustomButton from "../CustomButton/CustomButton";
@@ -42,7 +41,7 @@ const FineCard = ({fine, onFineAction}:{fine: any, onFineAction: (id?: number) =
                   <h3>{fine.title}</h3>
                     <div className="buttons-container">
                       <Link to={`/fines/${fine.id}`}>
-                        <CustomButton text="Подробнее"  />
+                        <CustomButton text="Подробнее" onClick={""} />
                       </Link>
                       {is_authenticated && location.pathname.includes("fines") && <CustomButton text="Добавить" onClick={handleAdd} /> }
                       {breach && breach.status === 1 && is_authenticated && location.pathname.includes("breaches") && <CustomButton text="Удалить" onClick={handleDelete} /> }

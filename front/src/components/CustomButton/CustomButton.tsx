@@ -1,8 +1,7 @@
-import React from 'react'
 import { Button } from 'react-bootstrap'
 import "./CustomButton.scss"
 
-const CustomButton = ({text, onClick}) => {
+const CustomButton = ({text, onClick}: any) => {
   return (
     <Button variant="primary" className="podrobnee_button" onClick={onClick}>{text}</Button>
   )

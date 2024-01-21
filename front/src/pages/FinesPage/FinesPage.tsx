@@ -90,7 +90,7 @@ const Fines = () => {
             </div>
 
             <div className="bottom-container">
-                {finesList.fines.map((fine) => {
+                {finesList.fines.map((fine: any) => {
                     return <FineCard fine={fine} key={fine.id}  onFineAction={searchFines}/>
                 })}
             </div>

@@ -4,7 +4,7 @@ import axios from "axios";
 import { useSsid } from './useSsid';
 
 export function useFine() {
-    const fine = useSelector(state => state.selectedFine.fine);
+    const fine = useSelector((state: any) => state.selectedFine.fine);
 
     const dispatch = useDispatch()
 

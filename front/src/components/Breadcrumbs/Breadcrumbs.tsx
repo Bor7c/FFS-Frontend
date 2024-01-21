@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import {FaChevronRight} from "react-icons/fa6";
 import {FaHome} from "react-icons/fa";
 import {useFine} from "../../hooks/useFine";
-import { useAuth } from "../../hooks/useAuth";
 
 const Breadcrumbs = () => {
 
@@ -12,13 +11,12 @@ const Breadcrumbs = () => {
     let currentLink = ''
 
     const { fine, setFine } = useFine()
-    const {is_moderator} = useAuth()
 
     const resetSelectedSpare = () => setFine(undefined)
 
     // const fines = is_moderator ? "Редактировать Штрафы" : "Штрафы";
 
-    const topics = {
+    const topics: any = {
         "fines": "Штрафы",
         "draft": "Новое нарушение",
         "breaches": "Нарушения",

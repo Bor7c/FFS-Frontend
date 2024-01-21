@@ -1,4 +1,3 @@
-import { Fine } from '../utils/types';
 import defaultImage from '../assets/Default.png';
 
 export const mockFines: any[] = [

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setFilters, setTitle } from "../store/FiltersSlice";
 
 export function useFilters() {
-  const filters = useSelector(state => state.filters);
+  const filters = useSelector((state: any) => state.filters);
   const dispatch = useDispatch();
 
   const updateFilters = (newFilters: any) => {

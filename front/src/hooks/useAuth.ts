@@ -4,7 +4,7 @@ import axios from "axios";
 import { useSsid } from './useSsid';
 
 export function useAuth() {
-  const {is_authenticated, is_moderator, user_id, user_name} = useSelector(state => state.user)
+  const {is_authenticated, is_moderator, user_id, user_name} = useSelector((state: any) => state.user)
 
   const { session_id, setSsid, resetSsid } = useSsid()
 
