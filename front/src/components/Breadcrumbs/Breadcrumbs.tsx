@@ -12,7 +12,6 @@ const Breadcrumbs = () => {
     let currentLink = ''
 
     const { fine, setFine } = useFine()
-    const {is_moderator} = useAuth()
 
     const resetSelectedSpare = () => setFine(undefined)
 
