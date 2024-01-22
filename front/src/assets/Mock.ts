@@ -25,4 +25,12 @@ export const mockFines: any[] = [
         status: 1,
         image: defaultImage
     },
+    {
+      id: 4,
+      title: 'Пример штрафа за приченение вреда здоровью',
+      text: 'Пример описания штрафа за приченение вреда здоровью',
+      price: '2000',
+      status: 1,
+      image: defaultImage
+  },
   ];

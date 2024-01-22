@@ -25,6 +25,7 @@ const FinePage = () => {
         }
     }
 
+    
     return (
         <div className="container-2">
             <span className='circle-image'>
